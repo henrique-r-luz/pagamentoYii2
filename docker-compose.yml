@@ -1,0 +1,76 @@
+version: "3.7"
+services:
+
+  app:
+    build:
+      args:
+        user: invest
+        uid: 1000
+      context: ./docker-compose/php
+      dockerfile: Dockerfile
+    image: invest_app
+    working_dir: /var/www/
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/php/docker-php-ext-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./docker-compose/php/php.ini:/usr/local/etc/php/php.ini
+     # - ./docker-compose/php/sources.list:/etc/apt/sources.list
+    networks:
+      - invest-network
+    depends_on:
+      - "db_pagamento"
+
+  db_pagamento:
+    build:
+      context: ./docker-compose/postgres
+      dockerfile: Dockerfile
+    image: invest_postgres
+    ports:
+      - "5430:5432"
+    environment:
+      POSTGRES_DB: pagamento
+      POSTGRES_PASSWORD: pagamento
+      POSTGRES_USER: postgres
+    volumes:
+      - ./docker-compose/postgres:/docker-entrypoint-initdb.d
+      - ./docker-compose/postgres/db-data:/var/lib/postgresql/data
+    networks:
+      - invest-network
+
+  db_teste:
+    build:
+      context: ./docker-compose/db_teste
+      dockerfile: Dockerfile
+    image: invest_db_teste
+    #container_name: cajui-db
+    ports:
+      - "3432:5432"
+    #restart: unless-stopped
+    environment:
+      POSTGRES_DB: invest
+      POSTGRES_PASSWORD: invest
+      POSTGRES_USER: postgres
+    volumes:
+      - ./docker-compose/db_teste:/docker-entrypoint-initdb.d
+    networks:
+      - invest-network
+
+  apache:
+    build:
+      context: ./docker-compose/apache
+      dockerfile: Dockerfile
+    image: web-invest-apache
+    depends_on:
+      - app
+    networks:
+      - invest-network
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www
+
+networks:
+  invest-network:
+    driver: bridge

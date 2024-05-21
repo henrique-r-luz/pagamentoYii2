@@ -1,0 +1,5 @@
+<?php
+
+?>
+
+Conteúdo pago

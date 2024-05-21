@@ -1,0 +1,45 @@
+<?php
+
+use yii\helpers\Url;
+
+$this->registerJsFile(Url::to('@web/js/menu.js'), ['depends' => [\yii\web\JqueryAsset::className()]]);
+
+?>
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/index.php">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink fa-2x"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+    </a>
+
+    <!-- Nav Item - Charts -->
+    <li class="nav-item">
+        <a class="nav-link" href="/gratuito">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Gratuíto</span></a>
+    </li>
+
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" href="/pago">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Pago</span></a>
+    </li>
+    <li id="nav-admin" class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#adm" aria-expanded="true" aria-controls="adm">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Admin</span>
+        </a>
+        <div id="adm" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a id="a-pessoa" class="collapse-item" href="/admin/pessoa">Pessoa</a>
+                <a class="collapse-item" href="/admin/user">User</a>
+                <a class="collapse-item" href="/admin/planos">Planos</a>
+            </div>
+        </div>
+    </li>
+
+</ul>
