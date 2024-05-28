@@ -20,6 +20,7 @@ class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
+    public $sourcePath = '@webroot/assets';
     public $css = [
         'css/site.css',
         'css/sb-admin-2.min.css'
@@ -29,10 +30,8 @@ class AppAsset extends AssetBundle
         'vendor/bootstrap/js/bootstrap.bundle.min.js',
         'vendor/jquery-easing/jquery.easing.min.js',
         'js/sb-admin-2.min.js',
-        // 'js/sb-admin.js',
-        //'vendor/chart.js/Chart.min.js',
-        //'js/demo/chart-area-demo.js',
-        //'js/demo/chart-pie-demo.js'
+        'js/menu.js',
+
 
     ];
     public $depends = [

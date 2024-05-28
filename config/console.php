@@ -1,5 +1,7 @@
 <?php
 
+use yii\console\controllers\MigrateController;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -14,6 +16,19 @@ $config = [
         '@tests' => '@app/tests',
     ],
     'components' => [
+
+        'controllerMap' => [
+            'class' => 'yiiapp\console\controllers\MigrateController',
+            'migrate' => [
+                'migrationNamespaces' => [
+                    'app\migrations',
+                ],
+                //'migrationPath' => null, // allows to disable not namespaced migration completely
+            ],
+
+        ],
+
+
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -25,16 +40,12 @@ $config = [
                 ],
             ],
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
         'db' => $db,
     ],
     'params' => $params,
-    /*
-    'controllerMap' => [
-        'fixture' => [ // Fixture generation command line.
-            'class' => 'yii\faker\FixtureController',
-        ],
-    ],
-    */
 ];
 
 if (YII_ENV_DEV) {

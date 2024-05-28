@@ -2,7 +2,7 @@
 
 use yii\helpers\Url;
 
-$this->registerJsFile(Url::to('@web/js/menu.js'), ['depends' => [\yii\web\JqueryAsset::className()]]);
+//$this->registerJsFile(Url::to('@web/js/menu.js'), ['depends' => [\yii\web\JqueryAsset::className()]]);
 
 ?>
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -16,14 +16,14 @@ $this->registerJsFile(Url::to('@web/js/menu.js'), ['depends' => [\yii\web\Jquery
     </a>
 
     <!-- Nav Item - Charts -->
-    <li class="nav-item">
+    <li id="nav-gratuito" class="nav-item">
         <a class="nav-link" href="/gratuito">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Gratuíto</span></a>
     </li>
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
+    <li id="nav-pago" class="nav-item">
         <a class="nav-link" href="/pago">
             <i class="fas fa-fw fa-table"></i>
             <span>Pago</span></a>

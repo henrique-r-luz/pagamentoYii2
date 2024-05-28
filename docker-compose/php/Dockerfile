@@ -32,7 +32,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Instalando Extensões PHP
 #RUN docker-php-ext-install curl gd intl mbstring opcache pdo_pgsql xml zip
-RUN docker-php-ext-install curl gd intl mbstring opcache pdo_pgsql zip
+RUN docker-php-ext-install curl gd intl mbstring opcache pdo pdo_pgsql zip
 
 #ARG IMAGICK_LAST_COMMIT='448c1cd0d58ba2838b9b6dff71c9b7e70a401b90'
 
