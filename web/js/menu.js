@@ -26,12 +26,18 @@ $(document).ready(function () {
             'nav-gratuito': 'nav-item active',
             'null': 'null',
             'null': 'null'
-        }
+        },
+        'plano-tipo': {
+            'nav-admin': 'nav-item active',
+            'adm': 'collapse show',
+            'a-plano-tipo': 'collapse-item active'
+        },
         //nav,collapse,item
     }
     itenMenuSelecionado = menu[controler];
-
+    console.log("Olaaaa");
     for (var key in itenMenuSelecionado) {
+        console.log(key);
         $('#' + key).addClass(itenMenuSelecionado[key]);
 
     }

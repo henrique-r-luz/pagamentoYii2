@@ -1,8 +1,9 @@
 <?php
 
-namespace app\models;
+namespace app\models\admin;
 
 use Yii;
+use app\models\PlanoDescricao;
 
 /**
  * This is the model class for table "plano_tipo".

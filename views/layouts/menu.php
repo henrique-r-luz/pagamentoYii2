@@ -37,7 +37,7 @@ use yii\helpers\Url;
             <div class="bg-white py-2 collapse-inner rounded">
                 <a id="a-pessoa" class="collapse-item" href="/admin/pessoa">Pessoa</a>
                 <a class="collapse-item" href="/admin/user">User</a>
-                <a class="collapse-item" href="/admin/planos">Planos</a>
+                <a id="a-plano-tipo" class="collapse-item" href="/admin/plano-tipo">Planos</a>
             </div>
         </div>
     </li>

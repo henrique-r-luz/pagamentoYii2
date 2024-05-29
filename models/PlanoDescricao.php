@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\admin\PlanoTipo;
 
 /**
  * This is the model class for table "plano_descricao".

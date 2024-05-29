@@ -56,6 +56,10 @@ $config = [
             'class' => 'yii\rbac\DbManager',
         ],
 
+
+    ],
+    'modules' => [
+        'gridview' => ['class' => '\kartik\grid\Module']
     ],
     'params' => $params,
 ];
@@ -75,7 +79,15 @@ if (YII_ENV_DEV) {
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
-        'allowedIPs' => ['*']
+        'allowedIPs' => ['*'],
+        'generators' => [ //here
+            'crud' => [ // generator name
+                'class' => 'yii\gii\generators\crud\Generator', // generator class
+                'templates' => [ //setting for out templates
+                    'myCrud' => '@app/templates/default', // template name => path to template
+                ]
+            ]
+        ],
     ];
 }
 

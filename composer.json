@@ -23,7 +23,9 @@
         "yiisoft/yii2": "~2.0.45",
         "yiisoft/yii2-bootstrap5": "~2.0.2",
         "yiisoft/yii2-symfonymailer": "~2.0.3",
-        "yidas/yii2-fontawesome": "^5.0"
+        "yidas/yii2-fontawesome": "^5.0",
+        "kartik-v/yii2-grid": "@dev",
+        "kartik-v/yii2-bootstrap5-dropdown": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
@@ -85,7 +87,8 @@
             "app\\web\\": "web/",
             "app\\controllers\\": "controllers/",
             "app\\commands\\": "commands/",
-            "app\\tests\\": "tests"
+            "app\\tests\\": "tests",
+            "app\\lib\\": "lib"
         }
     }
 }
