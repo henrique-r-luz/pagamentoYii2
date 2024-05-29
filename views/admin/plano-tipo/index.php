@@ -3,7 +3,8 @@
 use app\models\admin\PlanoTipo;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\grid\ActionColumn;
+use app\lib\ActionColumn;
+use app\lib\ActionColumnPadrao;
 use app\lib\GridViewPadrao as GridView;
 
 /** @var yii\web\View $this */
@@ -31,10 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'nome:ntext',
             [
                 'header' => 'Ações',
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, PlanoTipo $model, $key, $index, $column) {
+                'class' => ActionColumnPadrao::className(),
+                /*'urlCreator' => function ($action, PlanoTipo $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                },
+                },*/
                 'options' => ['style' => 'width:6%;']
             ],
         ],
