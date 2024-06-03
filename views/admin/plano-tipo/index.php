@@ -11,7 +11,7 @@ use app\lib\GridViewPadrao as GridView;
 /** @var app\models\admin\PlanoTipoSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Plano Tipos';
+$this->title = 'Plano';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="plano-tipo-index">
@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'titulo' => 'olaa',
+        'titulo' => 'Planos',
         'columns' => [
             [
                 'attribute' => 'id',

@@ -2,6 +2,8 @@
 
 namespace app\lib;
 
+use yii\helpers\Url;
+use yii\helpers\Html;
 use kartik\grid\GridView;
 
 class GridViewPadrao extends GridView
@@ -14,8 +16,16 @@ class GridViewPadrao extends GridView
     {
         $this->layout = '
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h5 class="m-0 font-weight-bold text-primary"> Lista de ' . $this->titulo . '  </h5>
+        <div class="card-header d-flex py-3">
+          
+               <h5 class="m-0 font-weight-bold text-primary"> Lista de ' . $this->titulo . '  </h5>
+               <a href="' . Url::to(['create']) . '" class="btn btn-primary btn-icon-split ml-auto">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-plus"></i>
+                                        </span>
+                                        <span class="text">Novo</span>
+                </a>
+          
         </div>
         <div class="card-body">
             {items}

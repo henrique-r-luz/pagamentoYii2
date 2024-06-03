@@ -13,11 +13,11 @@ use yii\widgets\ActiveForm;
         <div class="card-body">
             <?php $form = ActiveForm::begin(); ?>
 
-                <?= $form->field($model, 'nome')->textarea(['rows' => 6]) ?>
+            <?= $form->field($model, 'nome')->textInput() ?>
 
             <div class="form-group">
                 <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-                <?= Html::a('Voltar',['index'], ['class' => 'btn btn-default']) ?>
+                <?= Html::a('Voltar', ['index'], ['class' => 'btn btn-info']) ?>
             </div>
 
             <?php ActiveForm::end(); ?>

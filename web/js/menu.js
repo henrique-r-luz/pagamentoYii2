@@ -1,7 +1,9 @@
 $(document).ready(function () {
     var caminho = window.location.pathname;
-    let vet = caminho.split("/");
-    let controler = vet.pop()
+
+
+    //let vet = caminho.split("/");
+    //let controler = vet.pop()
 
     /**
          * o vetor é formado pelas classes que marcam o menu
@@ -27,18 +29,27 @@ $(document).ready(function () {
             'null': 'null',
             'null': 'null'
         },
-        'plano-tipo': {
+        '/admin/plano-tipo': {
             'nav-admin': 'nav-item active',
             'adm': 'collapse show',
             'a-plano-tipo': 'collapse-item active'
         },
         //nav,collapse,item
     }
-    itenMenuSelecionado = menu[controler];
-    console.log("Olaaaa");
-    for (var key in itenMenuSelecionado) {
-        console.log(key);
-        $('#' + key).addClass(itenMenuSelecionado[key]);
 
+    for (var key in menu) {
+        if (caminho.search(key) != -1) {
+            for (var attributos in menu[key]) {
+                console.log(menu[key]);
+                $('#' + attributos).addClass(menu[key][attributos]);
+
+            }
+            return;
+        }
     }
+    /* for (var key in itenMenuSelecionado) {
+         console.log(key);
+         $('#' + key).addClass(itenMenuSelecionado[key]);
+ 
+     }*/
 });
