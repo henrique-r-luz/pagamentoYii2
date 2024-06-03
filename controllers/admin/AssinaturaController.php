@@ -2,16 +2,16 @@
 
 namespace app\controllers\admin;
 
-use app\models\admin\Pessoa;
-use app\models\admin\PessoaSearch;
+use app\models\admin\Assinatura;
+use app\models\admin\AssinaturaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PessoaController implements the CRUD actions for Pessoa model.
+ * AssinaturaController implements the CRUD actions for Assinatura model.
  */
-class PessoaController extends Controller
+class AssinaturaController extends Controller
 {
     /**
      * @inheritDoc
@@ -32,13 +32,13 @@ class PessoaController extends Controller
     }
 
     /**
-     * Lists all Pessoa models.
+     * Lists all Assinatura models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new PessoaSearch();
+        $searchModel = new AssinaturaSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -48,7 +48,7 @@ class PessoaController extends Controller
     }
 
     /**
-     * Displays a single Pessoa model.
+     * Displays a single Assinatura model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,13 +61,13 @@ class PessoaController extends Controller
     }
 
     /**
-     * Creates a new Pessoa model.
+     * Creates a new Assinatura model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Pessoa();
+        $model = new Assinatura();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -83,7 +83,7 @@ class PessoaController extends Controller
     }
 
     /**
-     * Updates an existing Pessoa model.
+     * Updates an existing Assinatura model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -103,7 +103,7 @@ class PessoaController extends Controller
     }
 
     /**
-     * Deletes an existing Pessoa model.
+     * Deletes an existing Assinatura model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -117,15 +117,15 @@ class PessoaController extends Controller
     }
 
     /**
-     * Finds the Pessoa model based on its primary key value.
+     * Finds the Assinatura model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Pessoa the loaded model
+     * @return Assinatura the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Pessoa::findOne(['id' => $id])) !== null) {
+        if (($model = Assinatura::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

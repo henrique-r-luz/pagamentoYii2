@@ -33,9 +33,15 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'header' => 'Ações',
                 'class' => ActionColumnPadrao::className(),
-                /*'urlCreator' => function ($action, PlanoTipo $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                },*/
+                'template' => '{view} {update} {delete} {descricao}',
+                'buttons' => [
+                    'descricao' => function ($url, $model, $key) {
+                        return Html::a('<i class="fas fa-wrench"></i>', $url, [
+                            'title' => 'Descrição do plano',
+                            'data-pjax' => '0',
+                        ]);
+                    },
+                ],
                 'options' => ['style' => 'width:6%;']
             ],
         ],

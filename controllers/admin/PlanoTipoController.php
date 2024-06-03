@@ -2,11 +2,13 @@
 
 namespace app\controllers\admin;
 
-use app\models\admin\PlanoTipo;
-use app\models\admin\PlanoTipoSearch;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
+use yii\web\HttpException;
 use yii\filters\VerbFilter;
+use app\models\admin\PlanoTipo;
+use yii\web\NotFoundHttpException;
+use app\models\admin\PlanoDescricao;
+use app\models\admin\PlanoTipoSearch;
 
 /**
  * PlanoTipoController implements the CRUD actions for PlanoTipo model.
@@ -114,6 +116,23 @@ class PlanoTipoController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+
+    public function actionDescricao()
+    {
+        $planoId = $this->request->get('id') ?? [];
+
+        if (empty($planoId)) {
+            throw new HttpException(500, 'O plano não foi definido!!!');
+            // echo 'O plano não foi definido!!!';
+            // return;
+        }
+        return $this->redirect(['/admin/plano-descricao', 'plano_id' => $planoId]);
+        /*$planoDescricao = PlanoDescricao::find()->where(['plano_tipo_id' => $planoId]);
+        return $this->render('descricao/index', [
+            'planoDescricao' => $planoDescricao,
+        ]);*/
     }
 
     /**

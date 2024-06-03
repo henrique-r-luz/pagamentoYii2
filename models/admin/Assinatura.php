@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\models\admin;
 
 use Yii;
 use yii\db\ActiveRecord;
@@ -33,9 +33,9 @@ class Assinatura extends ActiveRecord
         return [
             [['plano_tipo_id', 'data_inicio'], 'required'],
             [['plano_tipo_id'], 'default', 'value' => null],
-            [['plano_tipo_id'], 'integer'],
+            [['plano_tipo_id', 'user_id'], 'integer'],
             [['data_inicio', 'data_fim'], 'safe'],
-            [['plano_tipo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Pessoa::class, 'targetAttribute' => ['plano_tipo_id' => 'id']],
+            [['plano_tipo_id'], 'exist', 'skipOnError' => true, 'targetClass' => PlanoTipo::class, 'targetAttribute' => ['plano_tipo_id' => 'id']],
         ];
     }
 
@@ -59,6 +59,11 @@ class Assinatura extends ActiveRecord
      */
     public function getPlanoTipo()
     {
-        return $this->hasOne(Pessoa::class, ['id' => 'plano_tipo_id']);
+        return $this->hasOne(PlanoTipo::class, ['id' => 'plano_tipo_id']);
+    }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 }

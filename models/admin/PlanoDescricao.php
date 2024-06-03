@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\models\admin;
 
 use Yii;
 use app\models\admin\PlanoTipo;
@@ -58,18 +58,18 @@ class PlanoDescricao extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'plano_tipo_id' => 'Plano Tipo ID',
-            'auth_item_name' => 'Auth Item Name',
-            'frequencia' => 'Frequencia',
-            'tipo_frequencia' => 'Tipo Frequencia',
-            'repeticao' => 'Repeticao',
+            'id' => 'Id',
+            'plano_tipo_id' => 'Plano',
+            'auth_item_name' => 'Permissão',
+            'frequencia' => 'Frequência',
+            'tipo_frequencia' => 'Tipo Frequência',
+            'repeticao' => 'Repetição',
             'back_url' => 'Back Url',
             'dia_compra' => 'Dia Compra',
             'dia_compra_proporcional' => 'Dia Compra Proporcional',
             'valor_plano' => 'Valor Plano',
             'currency_id' => 'Currency ID',
-            'descricao_fatura' => 'Descricao Fatura',
+            'descricao_fatura' => 'Descrição Fatura',
         ];
     }
 

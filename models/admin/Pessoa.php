@@ -1,8 +1,10 @@
 <?php
 
-namespace app\models;
+namespace app\models\admin;
 
 use Yii;
+use app\models\Assinatura;
+use app\lib\validator\CpfValidator;
 
 /**
  * This is the model class for table "pessoa".
@@ -33,7 +35,9 @@ class Pessoa extends \yii\db\ActiveRecord
         return [
             [['nome', 'cpf', 'email'], 'required'],
             [['nome', 'email'], 'string'],
-            [['cpf'], 'string', 'max' => 11],
+            [['email'], 'email'],
+            [['cpf'], CpfValidator::class],
+            //[['cpf'], 'string', 'max' => 11],
         ];
     }
 

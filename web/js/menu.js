@@ -34,6 +34,21 @@ $(document).ready(function () {
             'adm': 'collapse show',
             'a-plano-tipo': 'collapse-item active'
         },
+        '/admin/forma-pagamento': {
+            'nav-admin': 'nav-item active',
+            'adm': 'collapse show',
+            'a-forma-pagamento': 'collapse-item active'
+        },
+        '/admin/user': {
+            'nav-admin': 'nav-item active',
+            'adm': 'collapse show',
+            'a-user': 'collapse-item active'
+        },
+        '/admin/assinatura': {
+            'nav-admin': 'nav-item active',
+            'adm': 'collapse show',
+            'a-assinatura': 'collapse-item active'
+        }
         //nav,collapse,item
     }
 

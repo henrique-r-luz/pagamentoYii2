@@ -94,4 +94,14 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+
+    public function actionError()
+    {
+        $exception = Yii::$app->errorHandler->exception;
+
+        return $this->render(
+            'error',
+            ['exception' => $exception]
+        );
+    }
 }

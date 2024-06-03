@@ -91,3 +91,13 @@ a.desc:after {
 .CorTabela {
     color: #858796;
 }
+
+.control-label {
+    display: inline-block;
+    margin-bottom: .5rem;
+    font-weight: bold;
+}
+
+.help-block {
+    color: #ce481f;
+}

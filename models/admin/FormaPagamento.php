@@ -1,8 +1,10 @@
 <?php
 
-namespace app\models;
+namespace app\models\admin;
 
 use Yii;
+use app\models\PlanoDescricao;
+use app\models\ItensFormaPagamento;
 
 /**
  * This is the model class for table "forma_pagamento".

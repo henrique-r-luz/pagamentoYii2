@@ -12,6 +12,16 @@ class m240528_013456_criar_tabelas_inicias extends Migration
      */
     public function safeUp()
     {
+
+        $this->createTable(
+            'plano_tipo',
+            [
+                'id' => $this->primaryKey(),
+                'nome' => $this->text()->notNull(),
+            ]
+        );
+
+
         $this->createTable(
             'pessoa',
             [
@@ -22,25 +32,24 @@ class m240528_013456_criar_tabelas_inicias extends Migration
             ]
         );
 
-        $this->createTable(
-            'assinatura',
-            [
-                'id' => $this->primaryKey(),
-                'plano_tipo_id' => $this->integer()->notNull(),
-                'data_inicio' => $this->date()->notNull(),
-                'data_fim' => $this->date(),
-
-            ]
-        );
-
-        $this->addForeignKey(
-            'plano_tipo_assinatura_fk',
-            'assinatura',
-            'plano_tipo_id',
+        $this->createIndex(
+            'idx-unique-pessoa-cpf',
             'pessoa',
-            'id',
-            'CASCADE'
+            [
+                'cpf',
+            ],
+            true
         );
+
+        $this->createIndex(
+            'idx-unique-pessoa-email',
+            'pessoa',
+            [
+                'email',
+            ],
+            true
+        );
+
 
         $this->createTable(
             'user',
@@ -54,6 +63,38 @@ class m240528_013456_criar_tabelas_inicias extends Migration
             ]
         );
 
+        $this->createTable(
+            'assinatura',
+            [
+                'id' => $this->primaryKey(),
+                'user_id' => $this->integer()->notNull(),
+                'plano_tipo_id' => $this->integer()->notNull(),
+                'data_inicio' => $this->date()->notNull(),
+                'data_fim' => $this->date(),
+
+            ]
+        );
+
+        $this->addForeignKey(
+            'plano_tipo_assinatura_fk',
+            'assinatura',
+            'plano_tipo_id',
+            'plano_tipo',
+            'id',
+            'CASCADE'
+        );
+
+
+        $this->addForeignKey(
+            'user_assinatura_fk',
+            'assinatura',
+            'user_id',
+            'user',
+            'id',
+            'CASCADE'
+        );
+
+
         $this->addForeignKey(
             'pessoa_user_fk',
             'user',
@@ -64,13 +105,7 @@ class m240528_013456_criar_tabelas_inicias extends Migration
         );
 
 
-        $this->createTable(
-            'plano_tipo',
-            [
-                'id' => $this->primaryKey(),
-                'nome' => $this->text()->notNull(),
-            ]
-        );
+
 
         $this->createTable(
             'plano_descricao',
