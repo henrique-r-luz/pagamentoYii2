@@ -22,6 +22,7 @@ $this->title = 'Plano Descricaos';
         'titulo' => $this->title,
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'create' => false,
         'columns' => [
             [
                 'attribute' => 'id',
