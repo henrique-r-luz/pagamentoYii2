@@ -33,12 +33,6 @@ $this->title = 'Plano Descricaos';
             'frequencia',
             'tipo_frequencia',
             'repeticao',
-            //'back_url:ntext',
-            //'dia_compra',
-            //'dia_compra_proporcional',
-            //'valor_plano',
-            //'currency_id:ntext',
-            //'descricao_fatura:ntext',
             [
                 'header' => 'Ações',
                 'class' => ActionColumn::className(),

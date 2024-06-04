@@ -36,7 +36,7 @@ use yii\helpers\Url;
         <div id="adm" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a id="a-pessoa" class="collapse-item" href="/admin/pessoa">Pessoa</a>
-                <a id="a-use" class="collapse-item" href="/admin/user">User</a>
+                <a id="a-user" class="collapse-item" href="/admin/user">User</a>
                 <a id="a-plano-tipo" class="collapse-item" href="/admin/plano-tipo">Planos</a>
                 <a id="a-forma-pagamento" class="collapse-item" href="/admin/forma-pagamento">Forma Pagamento</a>
                 <a id="a-assinatura" class="collapse-item" href="/admin/assinatura">Assinatura</a>

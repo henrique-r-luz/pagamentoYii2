@@ -18,7 +18,18 @@ class m240528_013456_criar_tabelas_inicias extends Migration
             [
                 'id' => $this->primaryKey(),
                 'nome' => $this->text()->notNull(),
+                'auth_item_name' => $this->text()->notNull(),
             ]
+        );
+
+
+        $this->addForeignKey(
+            'auth_item_name_plano_tipo_fk',
+            'plano_tipo',
+            'auth_item_name',
+            'auth_item',
+            'name',
+            'CASCADE'
         );
 
 
@@ -112,7 +123,6 @@ class m240528_013456_criar_tabelas_inicias extends Migration
             [
                 'id' => $this->primaryKey(),
                 'plano_tipo_id' => $this->integer()->notNull(),
-                'auth_item_name' => $this->text()->notNull(),
                 'frequencia' => $this->integer()->notNull(),
                 'tipo_frequencia' => $this->integer()->notNull(),
                 'repeticao' => $this->integer()->notNull(),
@@ -125,14 +135,6 @@ class m240528_013456_criar_tabelas_inicias extends Migration
             ]
         );
 
-        $this->addForeignKey(
-            'auth_item_name_plano_descricao_fk',
-            'plano_descricao',
-            'auth_item_name',
-            'auth_item',
-            'name',
-            'CASCADE'
-        );
 
         $this->addForeignKey(
             'plano_tipo_plano_descricao_fk',

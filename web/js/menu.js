@@ -48,6 +48,11 @@ $(document).ready(function () {
             'nav-admin': 'nav-item active',
             'adm': 'collapse show',
             'a-assinatura': 'collapse-item active'
+        },
+        '/admin/plano-descricao': {
+            'nav-admin': 'nav-item active',
+            'adm': 'collapse show',
+            'a-plano-tipo': 'collapse-item active'
         }
         //nav,collapse,item
     }
@@ -62,9 +67,5 @@ $(document).ready(function () {
             return;
         }
     }
-    /* for (var key in itenMenuSelecionado) {
-         console.log(key);
-         $('#' + key).addClass(itenMenuSelecionado[key]);
- 
-     }*/
+
 });

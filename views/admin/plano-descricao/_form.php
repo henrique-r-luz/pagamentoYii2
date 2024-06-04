@@ -56,7 +56,7 @@ use yii\widgets\ActiveForm;
 
             <div class="form-group">
                 <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-                <?= Html::a('Voltar', ['index'], ['class' => 'btn btn-info']) ?>
+                <?= Html::a('Voltar', ['admin/plano-tipo'], ['class' => 'btn btn-info']) ?>
             </div>
 
             <?php ActiveForm::end(); ?>

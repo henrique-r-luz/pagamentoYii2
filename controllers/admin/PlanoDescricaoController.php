@@ -36,15 +36,18 @@ class PlanoDescricaoController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex(int $plano_id)
     {
         $searchModel = new PlanoDescricaoSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if ($dataProvider->count == 0) {
+            return $this->redirect(['create', 'plano_id' => $plano_id]);
+        } else {
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
     }
 
     /**
@@ -65,7 +68,7 @@ class PlanoDescricaoController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate(int $plano_id)
     {
         $model = new PlanoDescricao();
 
