@@ -31,6 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'nome:ntext',
             [
+                'label' => 'Permissão',
+                'attribute' => 'auth_item_name',
+                'options' => ['style' => 'width:8%;'],
+            ],
+            [
                 'header' => 'Ações',
                 'class' => ActionColumnPadrao::className(),
                 'template' => '{view} {update} {delete} {descricao}',

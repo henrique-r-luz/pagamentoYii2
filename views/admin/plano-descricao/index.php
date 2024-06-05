@@ -10,7 +10,7 @@ use app\lib\GridViewPadrao as GridView;
 /** @var app\models\admin\PlanoDescricaoSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Plano Descricaos';
+$this->title = 'Descricao do ' . $dataProvider->getModels()[0]->planoTipo->nome . ', id:' . $dataProvider->getModels()[0]->planoTipo->id;
 ?>
 <div class="plano-descricao-index">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -19,7 +19,7 @@ $this->title = 'Plano Descricaos';
 
 
     <?= GridView::widget([
-        'titulo' => $this->title,
+        'titulo' => 'Descrição de plano',
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'create' => false,
@@ -28,11 +28,11 @@ $this->title = 'Plano Descricaos';
                 'attribute' => 'id',
                 'options' => ['style' => 'width:5%;'],
             ],
-            'plano_tipo_id',
-            'auth_item_name:ntext',
             'frequencia',
             'tipo_frequencia',
             'repeticao',
+            'dia_compra',
+            'valor_plano',
             [
                 'header' => 'Ações',
                 'class' => ActionColumn::className(),

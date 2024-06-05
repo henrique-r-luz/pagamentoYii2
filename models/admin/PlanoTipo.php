@@ -3,7 +3,7 @@
 namespace app\models\admin;
 
 use Yii;
-use app\models\PlanoDescricao;
+use app\models\admin\permissao\AuthItem;
 
 /**
  * This is the model class for table "plano_tipo".
@@ -29,8 +29,8 @@ class PlanoTipo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nome'], 'required'],
-            [['nome'], 'string'],
+            [['nome', 'auth_item_name'], 'required'],
+            [['nome', 'auth_item_name'], 'string'],
         ];
     }
 
@@ -42,6 +42,7 @@ class PlanoTipo extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nome' => 'Nome',
+            'auth_item_name' => 'Permissão'
         ];
     }
 
@@ -53,5 +54,10 @@ class PlanoTipo extends \yii\db\ActiveRecord
     public function getPlanoDescricaos()
     {
         return $this->hasMany(PlanoDescricao::class, ['plano_tipo_id' => 'id']);
+    }
+
+    public function getPermissao()
+    {
+        return $this->hasMany(AuthItem::class, ['auth_item_name' => 'name']);
     }
 }

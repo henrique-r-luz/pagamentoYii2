@@ -18,7 +18,7 @@ class PlanoTipoSearch extends PlanoTipo
     {
         return [
             [['id'], 'integer'],
-            [['nome'], 'safe'],
+            [['nome', 'auth_item_name'], 'string'],
         ];
     }
 
@@ -62,6 +62,7 @@ class PlanoTipoSearch extends PlanoTipo
         ]);
 
         $query->andFilterWhere(['ilike', 'nome', $this->nome]);
+        $query->andFilterWhere(['ilike', 'auth_item_name', $this->nome]);
 
         return $dataProvider;
     }

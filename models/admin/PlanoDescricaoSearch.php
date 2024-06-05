@@ -18,7 +18,7 @@ class PlanoDescricaoSearch extends PlanoDescricao
     {
         return [
             [['id', 'plano_tipo_id', 'frequencia', 'tipo_frequencia', 'repeticao', 'dia_compra', 'dia_compra_proporcional'], 'integer'],
-            [['auth_item_name', 'back_url', 'currency_id', 'descricao_fatura'], 'safe'],
+            [['back_url', 'currency_id', 'descricao_fatura'], 'safe'],
             [['valor_plano'], 'number'],
         ];
     }
@@ -69,8 +69,7 @@ class PlanoDescricaoSearch extends PlanoDescricao
             'valor_plano' => $this->valor_plano,
         ]);
 
-        $query->andFilterWhere(['ilike', 'auth_item_name', $this->auth_item_name])
-            ->andFilterWhere(['ilike', 'back_url', $this->back_url])
+        $query->andFilterWhere(['ilike', 'back_url', $this->back_url])
             ->andFilterWhere(['ilike', 'currency_id', $this->currency_id])
             ->andFilterWhere(['ilike', 'descricao_fatura', $this->descricao_fatura]);
 

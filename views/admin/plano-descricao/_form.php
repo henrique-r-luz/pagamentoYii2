@@ -13,24 +13,25 @@ use yii\widgets\ActiveForm;
         <div class="card-body">
             <?php $form = ActiveForm::begin(); ?>
             <div class="row">
-                <div class="col-xs-4 col-sm-4 col-lg-4">
-                    <?= $form->field($model, 'plano_tipo_id')->textInput() ?>
-                </div>
-                <div class="col-xs-4 col-sm-4 col-lg-4">
-                    <?= $form->field($model, 'auth_item_name')->textInput() ?>
-                </div>
-                <div class="col-xs-4 col-sm-4 col-lg-4">
+                <div class="col-xs-6 col-sm-6 col-lg-6">
                     <?= $form->field($model, 'frequencia')->textInput() ?>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-lg-6">
+                    <?= $form->field($model, 'tipo_frequencia')->dropDownList(
+                        [
+                            'months' => 'Mês',
+                            'year' => 'Ano',
+                            'day' => 'Dia'
+                        ],
+                        ['prompt' => '']
+                    ) ?>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-4 col-sm-4 col-lg-4">
-                    <?= $form->field($model, 'tipo_frequencia')->textInput() ?>
-                </div>
-                <div class="col-xs-4 col-sm-4 col-lg-4">
+                <div class="col-xs-6 col-sm-6 col-lg-6">
                     <?= $form->field($model, 'repeticao')->textInput() ?>
                 </div>
-                <div class="col-xs-4 col-sm-4 col-lg-4">
+                <div class="col-xs-6 col-sm-6 col-lg-6">
                     <?= $form->field($model, 'back_url')->textInput() ?>
                 </div>
             </div>
@@ -39,7 +40,13 @@ use yii\widgets\ActiveForm;
                     <?= $form->field($model, 'dia_compra')->textInput() ?>
                 </div>
                 <div class="col-xs-4 col-sm-4 col-lg-4">
-                    <?= $form->field($model, 'dia_compra_proporcional')->textInput() ?>
+                    <?= $form->field($model, 'dia_compra_proporcional')->dropDownList(
+                        [
+                            0 => 'false',
+                            1 => 'true',
+                        ],
+                        ['prompt' => '']
+                    ) ?>
                 </div>
                 <div class="col-xs-4 col-sm-4 col-lg-4">
                     <?= $form->field($model, 'valor_plano')->textInput() ?>

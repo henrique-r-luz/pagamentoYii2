@@ -1,5 +1,7 @@
 <?php
 
+use app\lib\componentes\MercadoPago;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -12,6 +14,8 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+
+        'mercado_pago' => require(__DIR__ . '/mercado_pago.php'),
 
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation

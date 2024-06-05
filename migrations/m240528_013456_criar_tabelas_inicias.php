@@ -124,11 +124,11 @@ class m240528_013456_criar_tabelas_inicias extends Migration
                 'id' => $this->primaryKey(),
                 'plano_tipo_id' => $this->integer()->notNull(),
                 'frequencia' => $this->integer()->notNull(),
-                'tipo_frequencia' => $this->integer()->notNull(),
+                'tipo_frequencia' => $this->text()->notNull(),
                 'repeticao' => $this->integer()->notNull(),
                 'back_url' => $this->text()->notNull(),
                 'dia_compra' => $this->integer()->notNull(),
-                'dia_compra_proporcional' => $this->integer()->notNull(),
+                'dia_compra_proporcional' => $this->boolean()->notNull(),
                 'valor_plano' => $this->decimal(10, 2)->notNull(),
                 'currency_id' => $this->text()->notNull(),
                 'descricao_fatura' => $this->text()->notNull()

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\admin;
+namespace app\models\admin\permissao;
 
 class TipoPermissao
 {

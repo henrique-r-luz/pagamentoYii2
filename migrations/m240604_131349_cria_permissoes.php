@@ -1,7 +1,7 @@
 <?php
 
-use app\models\admin\TipoPermissao;
 use yii\db\Migration;
+use app\models\admin\permissao\TipoPermissao;
 
 /**
  * Class m240604_131349_cria_permissoes

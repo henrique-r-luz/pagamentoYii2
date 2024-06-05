@@ -1,8 +1,10 @@
 <?php
 
-namespace app\models\admin;
+namespace app\models\admin\permissao;
 
 use Yii;
+use yii\helpers\ArrayHelper;
+use app\models\admin\PlanoDescricao;
 
 /**
  * This is the model class for table "auth_item".
@@ -130,8 +132,14 @@ class AuthItem extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getRuleName()
+    /*public function getRuleName()
     {
         return $this->hasOne(AuthRule::class, ['name' => 'rule_name']);
+    }*/
+
+
+    public static function getPlanos()
+    {
+        return ArrayHelper::map(self::find()->where(['type' => TipoPermissao::TYPE['plano']])->asArray()->all(), 'name', 'name');
     }
 }

@@ -71,9 +71,10 @@ class PlanoDescricaoController extends Controller
     public function actionCreate(int $plano_id)
     {
         $model = new PlanoDescricao();
-
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+        $model->plano_tipo_id = $plano_id;
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->plano_tipo_id = $plano_id;
+            if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -82,6 +83,7 @@ class PlanoDescricaoController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'plano_id' => $plano_id
         ]);
     }
 
