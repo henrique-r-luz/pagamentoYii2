@@ -36,3 +36,4 @@ tests/_support/_generated
 /.vagrant
 
 config/mercado_pago.php
+config/mercado_pago.php
