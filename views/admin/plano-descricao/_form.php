@@ -54,7 +54,12 @@ use yii\widgets\ActiveForm;
             </div>
             <div class="row">
                 <div class="col-xs-6 col-sm-6 col-lg-6">
-                    <?= $form->field($model, 'currency_id')->textInput() ?>
+                    <?= $form->field($model, 'currency_id')->dropDownList(
+                        [
+                            'BRL' => 'BRL',
+                        ],
+                        ['prompt' => '']
+                    ) ?>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-lg-6">
                     <?= $form->field($model, 'descricao_fatura')->textInput() ?>

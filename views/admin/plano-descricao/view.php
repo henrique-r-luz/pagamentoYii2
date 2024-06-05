@@ -35,10 +35,13 @@ $this->title = $model->id;
             'repeticao',
             'back_url:ntext',
             'dia_compra',
-            //'dia_compra_proporcional',
             [
                 'label' => 'Compra Proporcional',
                 'value' => ($model->dia_compra_proporcional) ? 'true' : 'false',
+            ],
+            [
+                'label' => 'Id Api',
+                'value' => ($model->plano_api_id),
             ],
             'valor_plano',
             'currency_id:ntext',

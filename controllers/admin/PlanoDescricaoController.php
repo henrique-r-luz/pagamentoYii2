@@ -2,11 +2,14 @@
 
 namespace app\controllers\admin;
 
+use Throwable;
+use yii\web\Controller;
+use yii\filters\VerbFilter;
+use app\lib\PagamentoException;
+use yii\web\NotFoundHttpException;
+use app\service\admin\PlanoService;
 use app\models\admin\PlanoDescricao;
 use app\models\admin\PlanoDescricaoSearch;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * PlanoDescricaoController implements the CRUD actions for PlanoDescricao model.
@@ -74,8 +77,12 @@ class PlanoDescricaoController extends Controller
         $model->plano_tipo_id = $plano_id;
         if ($this->request->isPost && $model->load($this->request->post())) {
             $model->plano_tipo_id = $plano_id;
-            if ($model->save()) {
+            try {
+                $planoService = new PlanoService();
+                $planoService->criaPlano($model);
                 return $this->redirect(['view', 'id' => $model->id]);
+            } catch (PagamentoException $e) {
+                throw new NotFoundHttpException($e->getMessage());
             }
         } else {
             $model->loadDefaultValues();
@@ -116,9 +123,11 @@ class PlanoDescricaoController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $planoDescricao = $this->findModel($id);
+        $plano_id = $planoDescricao->plano_tipo_id;
+        $planoDescricao->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'plano_id' => $plano_id]);
     }
 
     /**

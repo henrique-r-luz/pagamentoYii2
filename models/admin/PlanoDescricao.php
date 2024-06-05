@@ -41,10 +41,10 @@ class PlanoDescricao extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['plano_tipo_id',  'frequencia', 'tipo_frequencia', 'repeticao', 'back_url', 'dia_compra', 'dia_compra_proporcional', 'valor_plano', 'currency_id', 'descricao_fatura'], 'required'],
+            [['plano_tipo_id', 'plano_api_id',  'frequencia', 'tipo_frequencia', 'repeticao', 'back_url', 'dia_compra', 'dia_compra_proporcional', 'valor_plano', 'currency_id', 'descricao_fatura'], 'required'],
             [['plano_tipo_id', 'frequencia', 'tipo_frequencia', 'repeticao', 'dia_compra', 'dia_compra_proporcional'], 'default', 'value' => null],
             [['plano_tipo_id', 'frequencia', 'repeticao', 'dia_compra'], 'integer'],
-            [['back_url', 'currency_id', 'tipo_frequencia', 'descricao_fatura'], 'string'],
+            [['back_url', 'currency_id', 'tipo_frequencia', 'descricao_fatura', 'plano_api_id'], 'string'],
             [['dia_compra_proporcional'], 'boolean'],
             [['valor_plano'], 'number'],
             [['plano_tipo_id'], 'exist', 'skipOnError' => true, 'targetClass' => PlanoTipo::class, 'targetAttribute' => ['plano_tipo_id' => 'id']],
@@ -68,6 +68,7 @@ class PlanoDescricao extends \yii\db\ActiveRecord
             'valor_plano' => 'Valor Plano',
             'currency_id' => 'Currency ID',
             'descricao_fatura' => 'Descrição Fatura',
+            'plano_api_id' => "Id Api"
         ];
     }
 

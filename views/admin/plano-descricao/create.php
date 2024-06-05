@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\admin\PlanoDescricao $model */
 
-$this->title = 'Descricao do ' . $model->planoTipo->nome . ' id:' . $model->planoTipo->id;
+$this->title = 'Descrição do ' . $model->planoTipo->nome . ' id:' . $model->planoTipo->id;
 ?>
 <div class="plano-descricao-create">
 

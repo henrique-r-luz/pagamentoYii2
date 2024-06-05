@@ -25,7 +25,8 @@
         "yiisoft/yii2-symfonymailer": "~2.0.3",
         "yidas/yii2-fontawesome": "^5.0",
         "kartik-v/yii2-grid": "@dev",
-        "kartik-v/yii2-bootstrap5-dropdown": "@dev"
+        "kartik-v/yii2-bootstrap5-dropdown": "@dev",
+        "guzzlehttp/guzzle": "^7.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
@@ -83,6 +84,7 @@
     "autoload": {
         "psr-4": {
             "app\\models\\": "models/",
+            "app\\service\\": "service/",
             "app\\views\\": "views/",
             "app\\web\\": "web/",
             "app\\controllers\\": "controllers/",

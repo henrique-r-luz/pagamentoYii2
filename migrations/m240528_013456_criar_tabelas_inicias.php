@@ -123,6 +123,7 @@ class m240528_013456_criar_tabelas_inicias extends Migration
             [
                 'id' => $this->primaryKey(),
                 'plano_tipo_id' => $this->integer()->notNull(),
+                'plano_api_id' => $this->text()->notNull(),
                 'frequencia' => $this->integer()->notNull(),
                 'tipo_frequencia' => $this->text()->notNull(),
                 'repeticao' => $this->integer()->notNull(),
