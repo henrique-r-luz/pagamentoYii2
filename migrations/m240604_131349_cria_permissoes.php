@@ -18,6 +18,15 @@ class m240604_131349_cria_permissoes extends Migration
         /**
          * rotas
          */
+
+        $this->insert('auth_item', [
+            'name' => '/site/index',
+            'type' => TipoPermissao::TYPE['rota'],
+            'description' => TipoPermissao::DESCRICAO[TipoPermissao::TYPE['rota']],
+            'created_at' => $data,
+            'updated_at' => $data,
+        ]);
+
         $this->insert('auth_item', [
             'name' => '/gratuito',
             'type' => TipoPermissao::TYPE['rota'],
@@ -129,6 +138,11 @@ class m240604_131349_cria_permissoes extends Migration
             'child' => '/gratuito'
         ]);
 
+        $this->insert('auth_item_child', [
+            'parent' => 'padrao',
+            'child' => '/site/index'
+        ]);
+
         $this->insert('auth_item', [
             'name' => 'prata',
             'type' => TipoPermissao::TYPE['plano'],
@@ -150,11 +164,13 @@ class m240604_131349_cria_permissoes extends Migration
             ['parent' => 'prata', 'child' => '/gratuito'],
             ['parent' => 'prata', 'child' => '/pago'],
             ['parent' => 'prata', 'child' => '/prata'],
+            ['parent' => 'prata', 'child' => '/site/index'],
 
             ['parent' => 'ouro', 'child' => '/gratuito'],
             ['parent' => 'ouro', 'child' => '/pago'],
             ['parent' => 'ouro', 'child' => '/prata'],
             ['parent' => 'ouro', 'child' => '/ouro'],
+            ['parent' => 'ouro', 'child' => '/site/index'],
 
         ]);
     }
@@ -233,6 +249,10 @@ class m240604_131349_cria_permissoes extends Migration
 
         $this->delete('auth_item', [
             'name' => '/admin/assinatura/*',
+        ]);
+
+        $this->delete('auth_item', [
+            'name' => '/site/index'
         ]);
 
         $this->delete('auth_item', [

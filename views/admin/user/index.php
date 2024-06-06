@@ -28,7 +28,6 @@ $this->title = 'Users';
                 'options' => ['style' => 'width:5%;'],
             ],
             'username:ntext',
-            'pessoa_id',
             [
                 'label' => 'Pessoa',
                 'value' => function ($model) {

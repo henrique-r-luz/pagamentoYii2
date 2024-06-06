@@ -1,5 +1,7 @@
 <?php
 
+use app\models\admin\Pessoa;
+use app\models\admin\PlanoTipo;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -17,12 +19,18 @@ use yii\widgets\ActiveForm;
                     <?= $form->field($model, 'username')->textInput() ?>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-lg-6">
-                    <?= $form->field($model, 'password')->textInput() ?>
+                    <?= $form->field($model, 'password')->passwordInput() ?>
                 </div>
             </div>
             <div class="row">
-                <?= $form->field($model, 'pessoa_id')->textInput() ?>
+                <div class="col-xs-6 col-sm-6 col-lg-6">
+                    <?= $form->field($model, 'pessoa_id')->dropDownList(Pessoa::listaPessoa(), ['prompt' => '---Selecione a pessoa---']) ?>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-lg-6">
+                    <?= $form->field($model, 'plano_id')->dropDownList(PlanoTipo::listaPlano(), ['prompt' => '---Selecione o plano---']) ?>
+                </div>
             </div>
+
 
             <div class="form-group">
                 <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

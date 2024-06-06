@@ -27,6 +27,15 @@ class m240606_124216_add_user_admin extends Migration
             true
         );
 
+        $this->createIndex(
+            'idx-unique-auth-assignment-user',
+            'auth_assignment',
+            [
+                'user_id',
+            ],
+            true
+        );
+
         $this->alterColumn('user', 'authkey', 'text');
 
         $passwordHash = Yii::$app->security->generatePasswordHash('admin');
@@ -70,20 +79,6 @@ class m240606_124216_add_user_admin extends Migration
         ]);
 
         $this->dropIndex('idx-unique-username', 'user');
+        $this->dropIndex('idx-unique-auth-assignment-user', 'auth_assignment');
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m240606_124216_add_user_admin cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

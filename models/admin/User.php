@@ -10,6 +10,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
 {
 
     public $authKey;
+    public $plano_id;
 
     public static function tableName()
     {
@@ -20,8 +21,9 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'password'], 'required'],
-            [['password', 'authkey',], 'string'],
+            [['username', 'password', 'pessoa_id'], 'required'],
+            [['password', 'authkey'], 'string'],
+            [['plano_id', 'pessoa_id'], 'integer'],
             [['username'], 'string', 'max' => 50],
             [['username'], 'unique'],
         ];
@@ -37,6 +39,8 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             'username' => 'Username',
             'password' => 'Password',
             'authkey' => 'Authkey',
+            'plano_id' => 'Plano',
+            'pessoa_id' => 'Pessoa'
         ];
     }
 
@@ -47,6 +51,8 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             'username' => 'Username',
             'password' => 'Password',
             'authkey' => 'Authkey',
+            'plano_id' => 'Plano',
+            'pessoa_id' => 'Pessoa'
         ];
     }
 
@@ -125,11 +131,21 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
 
     public function getAuthAssignment()
     {
-        return  $this->hasMany(AuthAssignment::className(), ['user_id' => 'id']);
+        return  $this->hasOne(AuthAssignment::class, ['user_id' => 'id']);
     }
 
     public function getPessoa()
     {
         return  $this->hasOne(Pessoa::className(), ['id' => 'pessoa_id']);
+    }
+
+
+    public function validaPlano()
+    {
+        if ($this->plano_id == null || $this->plano_id == '') {
+            $this->addError('plano_id', 'O Plano não pode ficar em Branco!');
+            return false;
+        }
+        return true;
     }
 }

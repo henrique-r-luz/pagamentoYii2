@@ -3,7 +3,7 @@
 namespace app\models\admin;
 
 use Yii;
-use app\models\Assinatura;
+use yii\helpers\ArrayHelper;
 use app\lib\validator\CpfValidator;
 
 /**
@@ -72,5 +72,11 @@ class Pessoa extends \yii\db\ActiveRecord
     public function getUsers()
     {
         return $this->hasMany(User::class, ['pessoa_id' => 'id']);
+    }
+
+
+    public static function listaPessoa()
+    {
+        return ArrayHelper::map(self::find()->asArray()->all(), 'id', 'nome');
     }
 }

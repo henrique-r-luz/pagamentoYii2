@@ -2,11 +2,13 @@
 
 namespace app\controllers\admin;
 
-use app\models\admin\User;
-use app\models\admin\UserSearch;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
+use app\models\admin\User;
 use yii\filters\VerbFilter;
+use app\lib\PagamentoException;
+use app\models\admin\UserSearch;
+use app\service\admin\UserService;
+use yii\web\NotFoundHttpException;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -69,9 +71,13 @@ class UserController extends Controller
     {
         $model = new User();
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->validaPlano()) {
+            try {
+                $userService = new UserService();
+                $userService->criaUser($model);
                 return $this->redirect(['view', 'id' => $model->id]);
+            } catch (PagamentoException $e) {
+                throw new NotFoundHttpException($e->getMessage());
             }
         } else {
             $model->loadDefaultValues();
@@ -92,8 +98,14 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->password = '';
+        $model->plano_id = $model->authAssignment->itemName->planoTipo->id ?? null;
+        /*echo '<pre>';
+        print_r($model->authAssignment->itemName);
+        exit();*/
+        if ($this->request->isPost && $model->load($this->request->post())) {
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

@@ -5,4 +5,5 @@ return [
     'senderEmail' => 'noreply@example.com',
     'senderName' => 'Example.com mailer',
     'bsVersion' => '5.x',
+    'grupoAdmin' => 'admin'
 ];

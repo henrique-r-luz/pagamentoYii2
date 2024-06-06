@@ -3,6 +3,7 @@
 namespace app\models\admin;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use app\models\admin\permissao\AuthItem;
 
 /**
@@ -59,5 +60,10 @@ class PlanoTipo extends \yii\db\ActiveRecord
     public function getPermissao()
     {
         return $this->hasMany(AuthItem::class, ['auth_item_name' => 'name']);
+    }
+
+    public static function listaPlano()
+    {
+        return ArrayHelper::map(self::find()->asArray()->all(), 'id', 'nome');
     }
 }
