@@ -32,7 +32,7 @@ $this->registerCsrfMetaTags();
 </head>
 
 <body id="page-top">
-
+    <?php $this->beginBody() ?>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
