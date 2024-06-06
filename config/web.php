@@ -1,6 +1,6 @@
 <?php
 
-use app\lib\componentes\MercadoPago;
+use app\lib\rbac\AcessControlPagamento;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
@@ -25,7 +25,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\admin\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -59,6 +59,16 @@ $config = [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
+
+
+    ],
+    'as beforeRequest' => [
+        'class' => AcessControlPagamento::class,
+        'allowRotas' => [
+            '/site/login',
+            '/site/error',
+            '/site/logout'
+        ]
 
 
     ],
