@@ -79,4 +79,24 @@ class Pessoa extends \yii\db\ActiveRecord
     {
         return ArrayHelper::map(self::find()->asArray()->all(), 'id', 'nome');
     }
+
+    public function cpfFormat()
+    {
+
+        // Remove qualquer caractere que não seja número
+        $cpf = preg_replace('/\D/', '', $this->cpf);
+
+        // Verifica se o CPF tem 11 dígitos
+        if (strlen($cpf) !== 11) {
+            return ''; // Ou você pode lançar uma exceção ou retornar uma string vazia
+        }
+
+        // Formata o CPF
+        $cpfFormatted = substr($cpf, 0, 3) . '.' .
+            substr($cpf, 3, 3) . '.' .
+            substr($cpf, 6, 3) . '-' .
+            substr($cpf, 9, 2);
+
+        return $cpfFormatted;
+    }
 }

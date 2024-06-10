@@ -76,6 +76,7 @@ $config = [
     'modules' => [
         'gridview' => ['class' => '\kartik\grid\Module']
     ],
+    'defaultRoute' => 'perfil/perfil-user',
     'params' => $params,
 ];
 

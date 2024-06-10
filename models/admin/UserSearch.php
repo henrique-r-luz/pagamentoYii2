@@ -12,6 +12,9 @@ use Yii;
  */
 class UserSearch extends User
 {
+
+    public $pessoa_nome;
+    public $plano_nome;
     /**
      * {@inheritdoc}
      */
@@ -19,6 +22,7 @@ class UserSearch extends User
     {
         return [
             [['id', 'pessoa_id'], 'integer'],
+            [['pessoa_nome', 'plano_nome'], 'string'],
             [['username', 'password', 'authkey'], 'safe'],
         ];
     }
@@ -41,8 +45,17 @@ class UserSearch extends User
      */
     public function search($params)
     {
-        $query = User::find()
+        $query = self::find()
+            ->select([
+                'user.id',
+                'username',
+                'pessoa.nome as pessoa_nome',
+                'plano_tipo.nome as plano_nome'
+            ])
             ->innerJoin('auth_assignment', 'auth_assignment.user_id::INTEGER = "user".id')
+            ->innerJoin('auth_item', 'auth_item.name = auth_assignment.item_name')
+            ->innerJoin('plano_tipo', 'plano_tipo.auth_item_name = auth_item.name')
+            ->joinWith(['pessoa'])
             ->where(['<>', 'auth_assignment.item_name', Yii::$app->params['grupoAdmin']]);
 
         // add conditions that should always apply here
@@ -67,7 +80,9 @@ class UserSearch extends User
 
         $query->andFilterWhere(['ilike', 'username', $this->username])
             ->andFilterWhere(['ilike', 'password', $this->password])
-            ->andFilterWhere(['ilike', 'authkey', $this->authkey]);
+            ->andFilterWhere(['ilike', 'authkey', $this->authkey])
+            ->andFilterWhere(['ilike', 'plano_tipo.nome', $this->plano_nome])
+            ->andFilterWhere(['ilike', 'pessoa.nome', $this->pessoa_nome]);
 
         return $dataProvider;
     }

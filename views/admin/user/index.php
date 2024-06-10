@@ -29,16 +29,14 @@ $this->title = 'Users';
             ],
             'username:ntext',
             [
+                'attribute' => 'pessoa_nome',
                 'label' => 'Pessoa',
-                'value' => function ($model) {
-                    return $model->pessoa->nome;
-                }
+
             ],
             [
+                'attribute' => 'plano_nome',
                 'label' => 'Plano',
-                'value' => function ($model) {
-                    return 'Plano';
-                }
+
             ],
             [
                 'header' => 'Ações',
