@@ -8,7 +8,7 @@
         <?= $this->render(
             'dadosPessoais',
             [
-                'user' => $user
+                'model' => $model
             ]
         ) ?>
     </div>

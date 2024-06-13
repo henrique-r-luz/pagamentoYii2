@@ -85,9 +85,7 @@ class PlanoService
     {
         $planoDescricao->plano_api_id = $planoApiId;
         if (!$planoDescricao->save()) {
-            echo '<pre>';
-            print_r($planoDescricao->getErrors());
-            exit();
+
             throw new PagamentoException("Erro ao salvar a api no banco de dados ");
         }
     }

@@ -2,9 +2,11 @@
 
 namespace app\models\admin;
 
+use Yii;
 use yii\base\Model;
-use yii\data\ActiveDataProvider;
+use app\lib\helper\TrataImg;
 use app\models\admin\Pessoa;
+use yii\data\ActiveDataProvider;
 
 /**
  * PessoaSearch represents the model behind the search form of `app\models\admin\Pessoa`.
@@ -40,7 +42,7 @@ class PessoaSearch extends Pessoa
      */
     public function search($params)
     {
-        $query = Pessoa::find();
+        $query = $this->queryBase(TrataImg::MINI_WIDTH, TrataImg::MINI_HEIGHT);
 
         // add conditions that should always apply here
 
@@ -66,5 +68,54 @@ class PessoaSearch extends Pessoa
             ->andFilterWhere(['ilike', 'email', $this->email]);
 
         return $dataProvider;
+    }
+
+
+    //->andWhere(['altura' => TrataImg::IMG_HEIGHT])
+    public function perfil()
+    {
+        return $this->queryBase(TrataImg::IMG_WIDTH, TrataImg::IMG_HEIGHT)
+            ->select([
+                'pessoa.id as pessoa_id',
+                'pessoa.nome',
+                'pessoa.cpf',
+                'pessoa.email',
+                'arquivo.hash',
+                'arquivo.mimetype',
+                'arquivo.path'
+            ])
+            ->leftJoin('user', '"user".pessoa_id = pessoa.id')
+            ->andWhere(['user.id' => Yii::$app->user->id])
+
+            ->orderBy(['created_at' => \SORT_DESC])
+            ->asArray()->one();
+    }
+
+
+    public function perfilMini()
+    {
+        return $this->queryBase(TrataImg::MINI_WIDTH, TrataImg::MINI_HEIGHT)
+            ->select([
+
+                'arquivo.hash',
+                'arquivo.mimetype',
+                'arquivo.path'
+            ])
+            ->leftJoin('user', '"user".pessoa_id = pessoa.id')
+            ->andWhere(['user.id' => Yii::$app->user->id])
+            ->orderBy(['created_at' => \SORT_DESC])
+            ->asArray()->one();
+    }
+
+
+
+    private function queryBase($largura, $altura)
+    {
+        return  Pessoa::find()
+            ->leftJoin('arquivo', "arquivo.model_id = pessoa.id 
+                                     and arquivo.model='" . Pessoa::class . "'
+                                     and altura=" . $altura .
+                " and largura=" . $largura);
+        //->andWhere(['arquivo.model' => Pessoa::class]);
     }
 }

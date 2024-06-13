@@ -3,6 +3,8 @@
 namespace app\models\admin;
 
 use Yii;
+use yii\web\UploadedFile;
+use app\lib\helper\TrataImg;
 use yii\helpers\ArrayHelper;
 use app\lib\validator\CpfValidator;
 
@@ -19,6 +21,8 @@ use app\lib\validator\CpfValidator;
  */
 class Pessoa extends \yii\db\ActiveRecord
 {
+
+    public ?UploadedFile $imageFile = null;
     /**
      * {@inheritdoc}
      */
@@ -36,6 +40,8 @@ class Pessoa extends \yii\db\ActiveRecord
             [['nome', 'cpf', 'email'], 'required'],
             [['nome', 'email'], 'string'],
             [['email'], 'email'],
+            [['imageFile'],'safe'],
+            [['imageFile'], 'file', 'extensions' => 'png, jpg'],
             [['cpf'], CpfValidator::class],
             //[['cpf'], 'string', 'max' => 11],
         ];
@@ -51,6 +57,7 @@ class Pessoa extends \yii\db\ActiveRecord
             'nome' => 'Nome',
             'cpf' => 'Cpf',
             'email' => 'Email',
+            'imageFile' => 'Foto'
         ];
     }
 
@@ -98,5 +105,15 @@ class Pessoa extends \yii\db\ActiveRecord
             substr($cpf, 9, 2);
 
         return $cpfFormatted;
+    }
+
+    public function upload(string $nomeArquivoOriginal)
+    {
+        if ($this->validate()) {
+            $this->imageFile->saveAs(Yii::getAlias('@arquivos') . '/' . $nomeArquivoOriginal . '.' . $this->imageFile->extension);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

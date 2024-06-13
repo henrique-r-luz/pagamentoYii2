@@ -2,6 +2,10 @@
 
 use app\lib\rbac\AcessControlPagamento;
 
+//diretório de arquivos
+
+Yii::setAlias('arquivos', dirname(__DIR__) . '/arquivos');
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
