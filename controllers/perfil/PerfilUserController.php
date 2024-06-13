@@ -59,21 +59,6 @@ class PerfilUserController extends Controller
     {
         $imagePath = Yii::getAlias('@arquivos') . $url;
         return $this->getImagem($imagePath);
-        /*if (file_exists($imagePath)) {
-            // Obtém as informações sobre o arquivo
-            $imageInfo = getimagesize($imagePath);
-            $imageType = $imageInfo['mime'];
-
-            // Define os cabeçalhos apropriados
-            header('Content-Type: ' . $imageType);
-            header('Content-Length: ' . filesize($imagePath));
-
-            // Lê o arquivo e envia o conteúdo
-            readfile($imagePath);
-        } else {
-            // Retorna um erro 404 se o arquivo não for encontrado
-            throw new NotFoundHttpException('Imagen dp perfil não encontrada');
-        }*/
     }
 
 

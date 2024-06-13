@@ -12,7 +12,7 @@ use yii\helpers\Url;
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink fa-2x"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Pay Yii2</div>
     </a>
 
     <!-- Nav Item - Charts -->
