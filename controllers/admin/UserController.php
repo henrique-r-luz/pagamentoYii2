@@ -6,6 +6,7 @@ use yii\web\Controller;
 use app\models\admin\User;
 use yii\filters\VerbFilter;
 use app\lib\PagamentoException;
+use app\models\admin\PlanoTipo;
 use app\models\admin\UserSearch;
 use app\service\admin\UserService;
 use yii\web\NotFoundHttpException;
@@ -71,8 +72,9 @@ class UserController extends Controller
     {
         $model = new User();
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->validaPlano()) {
+        if ($this->request->isPost && $model->load($this->request->post())) {
             try {
+                $model->plano_id = PlanoTipo::findOne(['nome' => PlanoTipo::PLANO_PADRAO])->id;
                 $userService = new UserService();
                 $userService->criaUser($model);
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -100,11 +102,9 @@ class UserController extends Controller
         $model = $this->findModel($id);
         $model->password = '';
         $model->plano_id = $model->authAssignment->itemName->planoTipo->id ?? null;
-        /*echo '<pre>';
-        print_r($model->authAssignment->itemName);
-        exit();*/
-        if ($this->request->isPost && $model->load($this->request->post())) {
 
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->plano_id = PlanoTipo::findOne(['nome' => PlanoTipo::PLANO_PADRAO])->id;
             $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }

@@ -42,7 +42,7 @@ class PlanoDescricaoController extends Controller
     public function actionIndex(int $plano_id)
     {
         $searchModel = new PlanoDescricaoSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider = $searchModel->search($this->request->queryParams, $plano_id);
         if ($dataProvider->count == 0) {
             return $this->redirect(['create', 'plano_id' => $plano_id]);
         } else {

@@ -20,8 +20,7 @@ use yii\widgets\ActiveForm;
                     <?= $form->field($model, 'tipo_frequencia')->dropDownList(
                         [
                             'months' => 'Mês',
-                            'year' => 'Ano',
-                            'day' => 'Dia'
+                            'days' => 'Dia'
                         ],
                         ['prompt' => '']
                     ) ?>
@@ -42,7 +41,7 @@ use yii\widgets\ActiveForm;
                 <div class="col-xs-4 col-sm-4 col-lg-4">
                     <?= $form->field($model, 'dia_compra_proporcional')->dropDownList(
                         [
-                            0 => 'false',
+                            -1 => 'false',
                             1 => 'true',
                         ],
                         ['prompt' => '']

@@ -22,7 +22,12 @@ $this->title = 'Descricao do ' . $dataProvider->getModels()[0]->planoTipo->nome 
         'titulo' => 'Descrição de plano',
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'create' => false,
+        'create' => '<a href="' . Url::to(['admin/plano-tipo']) . '" class="btn btn-secondary btn-icon-split ml-auto">
+        <span class="icon text-white-50">
+            <i class="fas fa-arrow-left"></i>
+        </span>
+        <span class="text">Voltar</span>
+    </a>',
         'columns' => [
             [
                 'attribute' => 'id',

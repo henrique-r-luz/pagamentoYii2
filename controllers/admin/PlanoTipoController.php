@@ -7,7 +7,6 @@ use yii\web\HttpException;
 use yii\filters\VerbFilter;
 use app\models\admin\PlanoTipo;
 use yii\web\NotFoundHttpException;
-use app\models\admin\PlanoDescricao;
 use app\models\admin\PlanoTipoSearch;
 
 /**

@@ -11,19 +11,17 @@ class GridViewPadrao extends GridView
     public $titulo = '';
     public $dataColumnClass = DataColumnPadrao::class;
     public $pagination = 10;
-    public $create = true;
+    public $create = '';
 
     public function init()
     {
-        if ($this->create == true) {
+        if ($this->create == '') {
             $this->create =  '<a href="' . Url::to(['create']) . '" class="btn btn-primary btn-icon-split ml-auto">
                             <span class="icon text-white-50">
                                 <i class="fas fa-plus"></i>
                             </span>
                             <span class="text">Novo</span>
                         </a>';
-        } else {
-            $this->create = '';
         }
 
 

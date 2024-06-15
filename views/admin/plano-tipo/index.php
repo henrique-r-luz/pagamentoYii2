@@ -1,11 +1,14 @@
 <?php
 
-use app\models\admin\PlanoTipo;
-use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\Html;
 use app\lib\ActionColumn;
 use app\lib\ActionColumnPadrao;
+use app\models\admin\PlanoTipo;
+use app\models\admin\PlanoDescricao;
+use app\models\admin\PlanoTipoSearch;
 use app\lib\GridViewPadrao as GridView;
+use app\models\admin\PlanoDescricaoSearch;
 
 /** @var yii\web\View $this */
 /** @var app\models\admin\PlanoTipoSearch $searchModel */
@@ -34,6 +37,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Permissão',
                 'attribute' => 'auth_item_name',
                 'options' => ['style' => 'width:8%;'],
+            ],
+            [
+                'label' => 'Pago',
+                'attribute' => 'plano_descricao_id',
+                'filter' => [PlanoTipoSearch::SIM => 'Sim', PlanoTipoSearch::NAO => 'Não'],
+                'options' => ['style' => 'width:8%;'],
+                'value' => function ($model) {
+                    if ($model->plano_descricao_id == null || $model->plano_descricao_id == '') {
+                        return "Não";
+                    }
+                    return "Sim";
+                }
             ],
             [
                 'header' => 'Ações',

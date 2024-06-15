@@ -11,13 +11,17 @@ use app\models\admin\PlanoTipo;
  */
 class PlanoTipoSearch extends PlanoTipo
 {
+
+    const SIM = 1;
+    const NAO = -1;
+    public $plano_descricao_id;
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'plano_descricao_id'], 'integer'],
             [['nome', 'auth_item_name'], 'string'],
         ];
     }
@@ -40,13 +44,23 @@ class PlanoTipoSearch extends PlanoTipo
      */
     public function search($params)
     {
-        $query = PlanoTipo::find();
+        $query = self::find()
+            ->select([
+                'plano_tipo.id',
+                'plano_tipo.nome',
+                'plano_tipo.auth_item_name',
+                'plano_descricao.id as plano_descricao_id'
+            ])
+            ->joinWith(['planoDescricaos']);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        //echo $query->createCommand()->getRawSql();
+        //exit();
 
         $this->load($params);
 
@@ -63,6 +77,13 @@ class PlanoTipoSearch extends PlanoTipo
 
         $query->andFilterWhere(['ilike', 'nome', $this->nome]);
         $query->andFilterWhere(['ilike', 'auth_item_name', $this->nome]);
+
+        if ($this->plano_descricao_id == self::SIM) {
+            $query->andWhere(['is not', 'plano_descricao.id', null]);
+        }
+        if ($this->plano_descricao_id == self::NAO) {
+            $query->andWhere(['is', 'plano_descricao.id', null]);
+        }
 
         return $dataProvider;
     }

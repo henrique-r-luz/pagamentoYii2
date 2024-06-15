@@ -39,9 +39,10 @@ class PlanoDescricaoSearch extends PlanoDescricao
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $plano_id = null)
     {
-        $query = PlanoDescricao::find();
+        $query = PlanoDescricao::find()
+            ->andFilterWhere(['plano_tipo_id' => $plano_id]);
 
         // add conditions that should always apply here
 

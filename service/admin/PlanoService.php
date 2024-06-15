@@ -73,7 +73,6 @@ class PlanoService
         curl_close($curl);
         $resp = \json_decode($response, true);
 
-
         if (empty($resp['id'])) {
             throw new PagamentoException("O plano na api do mercado livre não foi criado!");
         }

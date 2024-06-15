@@ -23,11 +23,8 @@ use yii\widgets\ActiveForm;
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-6 col-sm-6 col-lg-6">
+                <div class="col-xs-12 col-sm-12 col-lg-12">
                     <?= $form->field($model, 'pessoa_id')->dropDownList(Pessoa::listaPessoa(), ['prompt' => '---Selecione a pessoa---']) ?>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-lg-6">
-                    <?= $form->field($model, 'plano_id')->dropDownList(PlanoTipo::listaPlano(), ['prompt' => '---Selecione o plano---']) ?>
                 </div>
             </div>
 

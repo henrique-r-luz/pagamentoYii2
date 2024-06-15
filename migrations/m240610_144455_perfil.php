@@ -1,6 +1,7 @@
 <?php
 
 use yii\db\Migration;
+use app\models\admin\PlanoTipo;
 use app\models\admin\permissao\TipoPermissao;
 
 /**
@@ -73,6 +74,11 @@ class m240610_144455_perfil extends Migration
             ],
             true
         );
+
+        $this->insert('plano_tipo', [
+            'nome' => PlanoTipo::PLANO_PADRAO,
+            'auth_item_name' => 'padrao'
+        ]);
     }
 
     /**
@@ -80,6 +86,10 @@ class m240610_144455_perfil extends Migration
      */
     public function safeDown()
     {
+        $this->delete('plano_tipo', [
+            'nome' => PlanoTipo::PLANO_PADRAO
+        ]);
+
         $this->delete('auth_item_child', ['child' => '/perfil/perfil-user/*']);
         $this->delete('auth_item', [
             'name' => '/perfil/perfil-user/*'
