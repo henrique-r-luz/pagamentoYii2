@@ -15,7 +15,7 @@ $this->registerJsFile('https://sdk.mercadopago.com/js/v2', ['position' => \yii\w
                     email: "henrique@fkfk.com",
                     identification: {
                         "type": "CPF",
-                        "number": "01909375560",
+                        "number": "12345678909",
                     },
                 },
             },
