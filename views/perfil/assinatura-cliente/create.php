@@ -3,15 +3,15 @@ $this->registerJsFile('https://sdk.mercadopago.com/js/v2', ['position' => \yii\w
 ?>
 <div id="cardPaymentBrick_container"></div>
 <script>
-    const mp = new MercadoPago('TEST-fd149d5a-c316-4a09-b01a-2ab85ac64f73', {
-        locale: 'pt-BR'
-    });
+    const mp = new MercadoPago('TEST-fd149d5a-c316-4a09-b01a-2ab85ac64f73');
     const bricksBuilder = mp.bricks();
     const renderCardPaymentBrick = async (bricksBuilder) => {
         const settings = {
             initialization: {
-                amount: <?= 5 ?>, // valor total a ser pago
+                amount: 5, // valor total a ser pago
+                meu_dado: 12,
                 payer: {
+                    meu_dado: "12",
                     email: "henrique@fkfk.com",
                     identification: {
                         "type": "CPF",
@@ -23,7 +23,7 @@ $this->registerJsFile('https://sdk.mercadopago.com/js/v2', ['position' => \yii\w
                 visual: {
                     style: {
                         customVariables: {
-                            theme: 'default', // | 'dark' | 'bootstrap' | 'flat'
+                            theme: 'bootstrap', // | 'dark' | 'bootstrap' | 'flat'
                         }
                     }
                 },
@@ -35,14 +35,17 @@ $this->registerJsFile('https://sdk.mercadopago.com/js/v2', ['position' => \yii\w
                 }
             },
             callbacks: {
+
                 onReady: () => {
                     // callback chamado quando o Brick estiver pronto
                 },
                 onSubmit: (cardFormData) => {
                     //  callback chamado o usuário clicar no botão de submissão dos dados
                     //  exemplo de envio dos dados coletados pelo Brick para seu servidor
+                    cardFormData.meu_dado = '15';
                     return new Promise((resolve, reject) => {
-                        fetch("/pagamento", {
+                        console.log(cardFormData);
+                        fetch("/perfil/assinatura-cliente/pagamento", {
                                 method: "POST",
                                 headers: {
                                     "Content-Type": "application/json",
@@ -60,6 +63,7 @@ $this->registerJsFile('https://sdk.mercadopago.com/js/v2', ['position' => \yii\w
                     });
                 },
                 onError: (error) => {
+                    console.log('erroooo');
                     // callback chamado para todos os casos de erro do Brick
                 },
             },
