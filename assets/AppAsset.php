@@ -23,8 +23,10 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/sb-admin-2.css',
         'css/site.css',
+        "js/grow-js/jquery.growl.css",
     ];
     public $js = [
+        "js/grow-js/jquery.growl.js",
         'vendor/bootstrap/js/bootstrap.bundle.min.js',
         'vendor/jquery-easing/jquery.easing.min.js',
         'js/sb-admin-2.min.js',

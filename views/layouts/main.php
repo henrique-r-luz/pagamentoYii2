@@ -3,17 +3,57 @@
 /** @var yii\web\View $this */
 /** @var string $content */
 
+use kartik\growl\Growl;
 use app\assets\AppAsset;
 use yii\bootstrap5\Html;
+
 
 AppAsset::register($this);
 
 $this->registerCsrfMetaTags();
 
+
 ?>
 <?php $this->beginPage() ?>
+<?php foreach (Yii::$app->session->getAllFlashes() as $key => $message) :; ?>
+
+    <?php
+    $titulo = '<b>Erro</b>';
+    $icon = 'fas fa-times-circle';
+    $duracao = 3000000;
+    if ($key == 'success') {
+        $titulo = '<b>Sucesso</b>';
+        $icon = 'fas fa-check-circle';
+        $duracao = 3000;
+    }
+    if ($key == 'warning') {
+        $titulo = '<b>Aviso</b>';
+        $icon = 'fas fa-check-circle';
+        $duracao = 3000;
+    }
+
+    echo Growl::widget([
+        'type' =>  $key,
+        'title' => $titulo,
+        'icon' => $icon,
+        // 'icon' => (!empty($message['icon'])) ? $message['icon'] : 'fa fa-info',
+        'body' => $message, //(!empty($message['message'])) ? Html::encode($message['message']) : 'Message Not Set!',
+        'showSeparator' => true,
+        'delay' => 1, //This delay is how long before the message shows
+        'closeButton' => ['class' => 'close'],
+        'pluginOptions' => [
+            'delay' =>  $duracao, //This delay is how long the message shows for
+            /*'placement' => [
+                'from' =>  'top',
+                'align' =>  'right',
+            ]*/
+        ]
+    ]);
+    ?>
+<?php endforeach; ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
+
 
 <head>
 
@@ -31,8 +71,10 @@ $this->registerCsrfMetaTags();
     <?php $this->head() ?>
 </head>
 
+
 <body id="page-top">
     <?php $this->beginBody() ?>
+
     <!-- Page Wrapper -->
     <div id="wrapper">
 

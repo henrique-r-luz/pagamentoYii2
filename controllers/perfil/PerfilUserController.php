@@ -15,6 +15,7 @@ class PerfilUserController extends Controller
 {
     public function actionIndex()
     {
+        Yii::$app->session->setFlash('danger', 'Teste');
         if (Yii::$app->user->isGuest) {
             throw new NotFoundHttpException('O usuário não está logado');
         }

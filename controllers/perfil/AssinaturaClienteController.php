@@ -31,8 +31,7 @@ class AssinaturaClienteController extends Controller
     public function actionPagamento()
     {
 
-        $body = \json_decode(Yii::$app->getRequest()->getRawBody(), true);
-        print_r($body);
+        echo 'boraaa';
         /* MercadoPagoConfig::setAccessToken(Yii::$app->mercado_pago->token);
 
         $request_options = new RequestOptions();

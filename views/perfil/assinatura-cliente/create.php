@@ -54,7 +54,9 @@ $this->registerJsFile('https://sdk.mercadopago.com/js/v2', ['position' => \yii\w
                             })
                             .then((response) => {
                                 // receber o resultado do pagamento
-                                resolve();
+                                window.location.href = '<?= Yii::$app->homeUrl ?>';
+                                console.log("respostaaaaaaaaaa");
+
                             })
                             .catch((error) => {
                                 // lidar com a resposta de erro ao tentar criar o pagamento
