@@ -5035,6 +5035,12 @@ input[type="button"].btn-block {
   flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
+  color: #858796;
+}
+
+.control-label {
+  color: #5d5f68;
+  font-weight: bold;
 }
 
 .card-title {

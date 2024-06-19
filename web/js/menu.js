@@ -60,7 +60,6 @@ $(document).ready(function () {
     for (var key in menu) {
         if (caminho.search(key) != -1) {
             for (var attributos in menu[key]) {
-                console.log(menu[key]);
                 $('#' + attributos).addClass(menu[key][attributos]);
 
             }

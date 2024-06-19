@@ -22,7 +22,6 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/sb-admin-2.css',
-        'css/site.css',
         "js/grow-js/jquery.growl.css",
     ];
     public $js = [

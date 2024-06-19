@@ -35,6 +35,7 @@ class Assinatura extends ActiveRecord
             [['plano_tipo_id'], 'default', 'value' => null],
             [['plano_tipo_id', 'user_id'], 'integer'],
             [['data_inicio', 'data_fim'], 'safe'],
+            [['status', 'id_api_assinatura'], 'string'],
             [['plano_tipo_id'], 'exist', 'skipOnError' => true, 'targetClass' => PlanoTipo::class, 'targetAttribute' => ['plano_tipo_id' => 'id']],
         ];
     }
@@ -49,6 +50,8 @@ class Assinatura extends ActiveRecord
             'plano_tipo_id' => 'Plano Tipo ID',
             'data_inicio' => 'Data Inicio',
             'data_fim' => 'Data Fim',
+            'status' => 'Status',
+            'id_api_assinatura' => 'Api Id'
         ];
     }
 

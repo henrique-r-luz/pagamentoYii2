@@ -51,7 +51,7 @@ class PlanoTipoSearch extends PlanoTipo
                 'plano_tipo.auth_item_name',
                 'plano_descricao.id as plano_descricao_id'
             ])
-            ->joinWith(['planoDescricaos']);
+            ->joinWith(['planoDescricao']);
 
         // add conditions that should always apply here
 

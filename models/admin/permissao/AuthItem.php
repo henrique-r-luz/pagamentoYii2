@@ -23,7 +23,7 @@ use app\models\admin\PlanoTipo;
  * @property AuthItemChild[] $authItemChildren0
  * @property AuthItem[] $children
  * @property AuthItem[] $parents
- * @property PlanoDescricao[] $planoDescricaos
+ * @property PlanoDescricao $planoDescricao
  * @property AuthRule $ruleName
  */
 class AuthItem extends \yii\db\ActiveRecord
@@ -119,7 +119,7 @@ class AuthItem extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[PlanoDescricaos]].
+     * 
      *
      * @return \yii\db\ActiveQuery
      */

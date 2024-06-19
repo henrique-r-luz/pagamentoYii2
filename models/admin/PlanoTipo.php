@@ -12,7 +12,7 @@ use app\models\admin\permissao\AuthItem;
  * @property int $id
  * @property string $nome
  *
- * @property PlanoDescricao[] $planoDescricaos
+ * @property PlanoDescricao
  */
 class PlanoTipo extends \yii\db\ActiveRecord
 {
@@ -49,13 +49,13 @@ class PlanoTipo extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[PlanoDescricaos]].
+     * Gets query for [[PlanoDescricao]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getPlanoDescricaos()
+    public function getPlanoDescricao()
     {
-        return $this->hasMany(PlanoDescricao::class, ['plano_tipo_id' => 'id']);
+        return $this->hasOne(PlanoDescricao::class, ['plano_tipo_id' => 'id']);
     }
 
     public function getPermissao()
@@ -66,5 +66,12 @@ class PlanoTipo extends \yii\db\ActiveRecord
     public static function listaPlano()
     {
         return ArrayHelper::map(self::find()->asArray()->all(), 'id', 'nome');
+    }
+
+    public static function listaPlanoComDescricao()
+    {
+        return ArrayHelper::map(self::find()
+            ->innerJoinWith(['planoDescricao'])
+            ->asArray()->all(), 'id', 'nome');
     }
 }
