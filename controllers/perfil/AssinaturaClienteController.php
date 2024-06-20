@@ -5,7 +5,6 @@ namespace app\controllers\perfil;
 
 use Yii;
 
-use yii\web\Response;
 use yii\web\Controller;
 use app\models\perfil\SelecaoPlano;
 use app\service\perfil\AssinaturaServices;
@@ -40,8 +39,11 @@ class AssinaturaClienteController extends Controller
     public function actionCreate(int $plano_id)
     {
         $planoTipo = PlanoTipo::findOne($plano_id);
+        $user = Yii::$app->user->identity;
+        $pessoa = $user->pessoa;
         return $this->render('create', [
-            'planoTipo' => $planoTipo
+            'planoTipo' => $planoTipo,
+            'pessoa' => $pessoa
         ]);
     }
 
@@ -51,10 +53,9 @@ class AssinaturaClienteController extends Controller
         $request = Yii::$app->request;
         $data = $request->getRawBody(); // Isso retorna um array com os dados JSON
         $resp = \json_decode($data, true);
-        print_r($resp);
-        exit();
-        $assinaturaServices = new AssinaturaServices($resp['token'], $resp['plano_id']);
 
+        $assinaturaServices = new AssinaturaServices($resp['token'], $resp['plano_id']);
+        $assinaturaServices->save();
         /* MercadoPagoConfig::setAccessToken(Yii::$app->mercado_pago->token);
 
         $request_options = new RequestOptions();

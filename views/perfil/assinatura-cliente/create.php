@@ -28,17 +28,17 @@ $create =  '<a href="' . Url::to(['seleciona-plano']) . '" class="btn btn-second
     </div>
 </div>
 <script>
-    const mp = new MercadoPago('TEST-fd149d5a-c316-4a09-b01a-2ab85ac64f73');
+    const mp = new MercadoPago('APP_USR-45b1095b-131c-4eee-8daf-3fc00b0502b6');
     const bricksBuilder = mp.bricks();
     const renderCardPaymentBrick = async (bricksBuilder) => {
         const settings = {
             initialization: {
-                amount: 5, // valor total a ser pago
+                amount: <?= $planoTipo->planoDescricao->valor_plano ?>, // valor total a ser pago
                 payer: {
-                    email: "henrique@fkfk.com",
+                    email: "<?= $pessoa->email ?>",
                     identification: {
                         "type": "CPF",
-                        "number": "12345678909",
+                        "number": "<?= $pessoa->cpf ?>",
                     },
                 },
             },
@@ -67,7 +67,6 @@ $create =  '<a href="' . Url::to(['seleciona-plano']) . '" class="btn btn-second
                     //  exemplo de envio dos dados coletados pelo Brick para seu servidor
                     cardFormData.plano_id = <?= $planoTipo->id ?>;
                     return new Promise((resolve, reject) => {
-                        console.log(cardFormData);
                         fetch("/perfil/assinatura-cliente/pagamento", {
                                 method: "POST",
                                 headers: {

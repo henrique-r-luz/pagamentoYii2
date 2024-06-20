@@ -79,6 +79,9 @@ class PlanoDescricaoController extends Controller
             $model->plano_tipo_id = $plano_id;
             try {
                 $planoService = new PlanoService();
+                if ($model->dia_compra_proporcional == -1) {
+                    $model->dia_compra_proporcional = 0;
+                }
                 $planoService->criaPlano($model);
                 return $this->redirect(['view', 'id' => $model->id]);
             } catch (PagamentoException $e) {

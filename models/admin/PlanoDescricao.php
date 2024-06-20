@@ -45,7 +45,7 @@ class PlanoDescricao extends \yii\db\ActiveRecord
             [['plano_tipo_id', 'frequencia', 'tipo_frequencia', 'repeticao', 'dia_compra', 'dia_compra_proporcional'], 'default', 'value' => null],
             [['plano_tipo_id', 'frequencia', 'repeticao', 'dia_compra'], 'integer'],
             [['back_url', 'currency_id', 'tipo_frequencia', 'descricao_fatura', 'plano_api_id'], 'string'],
-            [['dia_compra_proporcional'], 'boolean'],
+            [['dia_compra_proporcional'], 'safe'],
             [['valor_plano'], 'number'],
             [['plano_tipo_id'], 'exist', 'skipOnError' => true, 'targetClass' => PlanoTipo::class, 'targetAttribute' => ['plano_tipo_id' => 'id']],
         ];
