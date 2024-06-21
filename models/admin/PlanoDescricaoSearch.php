@@ -19,6 +19,7 @@ class PlanoDescricaoSearch extends PlanoDescricao
         return [
             [['id', 'plano_tipo_id', 'frequencia', 'tipo_frequencia', 'repeticao', 'dia_compra', 'dia_compra_proporcional'], 'integer'],
             [['back_url', 'currency_id', 'descricao_fatura'], 'safe'],
+            [['plano_api_id'], 'string'],
             [['valor_plano'], 'number'],
         ];
     }
@@ -72,6 +73,7 @@ class PlanoDescricaoSearch extends PlanoDescricao
 
         $query->andFilterWhere(['ilike', 'back_url', $this->back_url])
             ->andFilterWhere(['ilike', 'currency_id', $this->currency_id])
+            ->andFilterWhere(['ilike', 'plano_api_id', $this->plano_api_id])
             ->andFilterWhere(['ilike', 'descricao_fatura', $this->descricao_fatura]);
 
         return $dataProvider;

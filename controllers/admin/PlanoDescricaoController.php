@@ -2,7 +2,6 @@
 
 namespace app\controllers\admin;
 
-use Throwable;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\lib\PagamentoException;
@@ -130,7 +129,7 @@ class PlanoDescricaoController extends Controller
         $plano_id = $planoDescricao->plano_tipo_id;
         $planoDescricao->delete();
 
-        return $this->redirect(['index', 'plano_id' => $plano_id]);
+        return $this->redirect(['/admin/plano-tipo']);
     }
 
     /**

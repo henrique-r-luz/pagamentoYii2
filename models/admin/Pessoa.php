@@ -40,7 +40,7 @@ class Pessoa extends \yii\db\ActiveRecord
             [['nome', 'cpf', 'email'], 'required'],
             [['nome', 'email'], 'string'],
             [['email'], 'email'],
-            [['imageFile'],'safe'],
+            [['imageFile'], 'safe'],
             [['imageFile'], 'file', 'extensions' => 'png, jpg'],
             [['cpf'], CpfValidator::class],
             //[['cpf'], 'string', 'max' => 11],

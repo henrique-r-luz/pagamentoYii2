@@ -27,8 +27,13 @@ class EditaPerfilService
     {
         try {
             $transaction = Yii::$app->db->beginTransaction();
+            $image = UploadedFile::getInstance($this->pessoa, 'imageFile');
             $this->atualizaPessoa();
-            $this->uploadImagem();
+            if (empty($image)) {
+                $transaction->commit();
+                return;
+            }
+            $this->uploadImagem($image);
             $nomeImagem = $this->redimenciona(TrataImg::IMG_WIDTH, TrataImg::IMG_HEIGHT);
             $this->savaArquivo($nomeImagem, TrataImg::IMG_WIDTH, TrataImg::IMG_HEIGHT);
             $nomeImagem = $this->redimenciona(TrataImg::MINI_WIDTH, TrataImg::MINI_HEIGHT);
@@ -44,9 +49,9 @@ class EditaPerfilService
         }
     }
 
-    private function uploadImagem()
+    private function uploadImagem($image)
     {
-        $this->pessoa->imageFile = UploadedFile::getInstance($this->pessoa, 'imageFile');
+        $this->pessoa->imageFile = $image;
 
         $this->nomeArquivoOriginal = $this->trataImg->getNomeArquivoOriginal($this->pessoa->imageFile);
         if (!$this->pessoa->upload($this->nomeArquivoOriginal)) {
@@ -80,6 +85,8 @@ class EditaPerfilService
 
     private function savaArquivo($nomeImagem, $largura, $altura)
     {
+
+        $this->removeArquivosAntigos($this->pessoa->id, $largura, $altura, Pessoa::class);
         $objetoData = new \DateTime;
         $data = (int) $objetoData->getTimestamp();
 
@@ -94,6 +101,20 @@ class EditaPerfilService
         $arquivo->created_at = $data;
         if (!$arquivo->save()) {
             throw new PagamentoException('Erro ao savar aquivo!');
+        }
+    }
+
+    private function removeArquivosAntigos($pessoa_id, $largura, $altura, $pessoa_classe)
+    {
+        $arquivos = Arquivo::find()->where(['model_id' => $pessoa_id])
+            ->andWhere(['largura' => $largura])
+            ->andWhere(['altura' => $altura])
+            ->andWhere(['model' => $pessoa_classe])->all();
+        foreach ($arquivos as $arquivoRemover) {
+            $path  = ($arquivoRemover->path == '') ? '' : '/' . $arquivoRemover->path;
+            $foto =  Yii::getAlias('@arquivos') . '/' . $path  . $arquivoRemover->hash . '.' . $arquivoRemover->mimetype;
+            unlink($foto);
+            $arquivoRemover->delete();
         }
     }
 

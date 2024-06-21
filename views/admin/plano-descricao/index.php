@@ -33,6 +33,7 @@ $this->title = 'Descricao do ' . $dataProvider->getModels()[0]->planoTipo->nome 
                 'attribute' => 'id',
                 'options' => ['style' => 'width:5%;'],
             ],
+            'plano_api_id',
             'frequencia',
             'tipo_frequencia',
             'repeticao',
