@@ -9,6 +9,7 @@ use app\models\admin\Pessoa;
 use app\lib\PagamentoException;
 use app\models\admin\PlanoTipo;
 use app\lib\dicionario\StatusAssinatura;
+use app\models\admin\Assinatura;
 
 class AssinaturaServices
 {
@@ -26,7 +27,9 @@ class AssinaturaServices
 
     public function save()
     {
-        $this->criaAssinaturaAPI();
+        $apiAssinaturaId = $this->criaAssinaturaAPI();
+        $this->savaAssinaturaDB($apiAssinaturaId);
+        //adiciona permições
     }
 
     private function criaAssinaturaAPI()
@@ -74,12 +77,20 @@ class AssinaturaServices
 
             //throw new PagamentoException("A assinatura na api do mercado livre não foi criado!");
         }
-        print_r($resp);
-        exit();
         return $resp['id'];
     }
 
-    private function savaAssinaturaDB()
+    private function savaAssinaturaDB($apiAssinaturaId)
     {
+        $assinatura = new Assinatura();
+        $assinatura->user_id = Yii::$app->user->id;
+        $assinatura->plano_tipo_id = $this->plano->id;
+        $assinatura->data_inicio = date('Y-m-d');
+        $assinatura->id_api_assinatura = $apiAssinaturaId;
+        $assinatura->status = StatusAssinatura::AUTHORIZED;
+        if (!$assinatura->save()) {
+
+            throw new PagamentoException("Erro ao salvar assinatura no BD !");
+        }
     }
 }

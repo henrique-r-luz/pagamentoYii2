@@ -15,6 +15,7 @@ class PerfilUserController extends Controller
 {
     public function actionIndex()
     {
+
         if (Yii::$app->user->isGuest) {
             throw new NotFoundHttpException('O usuário não está logado');
         }

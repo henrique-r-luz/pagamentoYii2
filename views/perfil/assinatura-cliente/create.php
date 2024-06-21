@@ -76,7 +76,7 @@ $create =  '<a href="' . Url::to(['seleciona-plano']) . '" class="btn btn-second
                             })
                             .then((response) => {
                                 // receber o resultado do pagamento
-                                //  window.location.href = '<?= Yii::$app->homeUrl ?>';
+                                window.location.href = '<?= Yii::$app->homeUrl ?>';
                                 console.log(response);
 
                             })

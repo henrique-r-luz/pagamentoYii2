@@ -6,10 +6,11 @@ namespace app\controllers\perfil;
 use Yii;
 
 use yii\web\Controller;
+use app\lib\PagamentoException;
+use app\models\admin\PlanoTipo;
 use app\models\perfil\SelecaoPlano;
 use app\service\perfil\AssinaturaServices;
 use app\lib\behaviorController\DisableCsrfBehavior;
-use app\models\admin\PlanoTipo;
 
 class AssinaturaClienteController extends Controller
 {
@@ -50,20 +51,16 @@ class AssinaturaClienteController extends Controller
 
     public function actionPagamento()
     {
-        $request = Yii::$app->request;
-        $data = $request->getRawBody(); // Isso retorna um array com os dados JSON
-        $resp = \json_decode($data, true);
+        try {
+            $request = Yii::$app->request;
+            $data = $request->getRawBody(); // Isso retorna um array com os dados JSON
+            $resp = \json_decode($data, true);
 
-        $assinaturaServices = new AssinaturaServices($resp['token'], $resp['plano_id']);
-        $assinaturaServices->save();
-        /* MercadoPagoConfig::setAccessToken(Yii::$app->mercado_pago->token);
-
-        $request_options = new RequestOptions();
-        $request_options->setCustomHeaders(["X-Idempotency-Key: aabb"]);*/
-        // Yii::$app->response->format = Response::FORMAT_JSON;
-        //MercadoPagoConfig::setAccessToken(Yii::$app->mercado_pago->token);
-        /*echo '<pre>';
-        print_r($this->request->post());
-        exit();*/
+            $assinaturaServices = new AssinaturaServices($resp['token'], $resp['plano_id']);
+            $assinaturaServices->save();
+            Yii::$app->session->setFlash('success', 'Assinatura criada com sucesso!!');
+        } catch (PagamentoException $e) {
+            Yii::$app->session->setFlash('danger', 'Assinatura ao criar assinatura: ' . $e->getMessage() . '!!');
+        }
     }
 }
