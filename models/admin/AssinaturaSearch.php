@@ -11,16 +11,30 @@ use app\models\admin\Assinatura;
  */
 class AssinaturaSearch extends Assinatura
 {
+
+    public $user_nome;
+    public $plano_nome;
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'user_id', 'plano_tipo_id'], 'integer'],
+            [['id'], 'integer'],
+            [['user_nome', 'plano_nome'], 'string'],
             [['data_inicio', 'data_fim'], 'safe'],
         ];
     }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'plano_nome' => 'Plano',
+            'user_nome' => 'Usuário',
+        ];
+    }
+
 
     /**
      * {@inheritdoc}
@@ -38,15 +52,39 @@ class AssinaturaSearch extends Assinatura
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $user_id = null)
     {
-        $query = Assinatura::find();
+        $query = self::find()
+            ->select([
+                'assinatura.id',
+                'plano_tipo.nome as plano_nome',
+                'user.username as user_nome',
+                'assinatura.data_inicio',
+                'assinatura.data_fim',
+                'id_api_assinatura',
+                'assinatura.status'
+            ])
+            ->joinWith(['planoTipo', 'user']);
+
+        $query->andFilterWhere(['user_id' => $user_id]);
+        $query->andFilterWhere(['ilike', 'plano_tipo.nome', $this->plano_nome])
+            ->andFilterWhere(['ilike', 'user.username', $this->user_nome]);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['plano_nome'] = [
+            'asc' => ['plano_tipo.nome' => SORT_ASC],
+            'desc' => ['plano_tipo.nome' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['user_nome'] = [
+            'asc' => ['user.username' => SORT_ASC],
+            'desc' => ['user.username' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -59,8 +97,6 @@ class AssinaturaSearch extends Assinatura
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
-            'plano_tipo_id' => $this->plano_tipo_id,
             'data_inicio' => $this->data_inicio,
             'data_fim' => $this->data_fim,
         ]);

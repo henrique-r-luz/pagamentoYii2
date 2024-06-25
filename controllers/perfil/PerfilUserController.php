@@ -9,6 +9,7 @@ use app\models\admin\Pessoa;
 use app\lib\PagamentoException;
 use app\models\admin\PessoaSearch;
 use yii\web\NotFoundHttpException;
+use app\models\admin\AssinaturaSearch;
 use app\service\perfil\EditaPerfilService;
 
 class PerfilUserController extends Controller
@@ -26,8 +27,17 @@ class PerfilUserController extends Controller
         }
         $path  = ($model['path'] == '') ? '' : '/' . $model['path'];
         $model['img'] = $path . '/' . $model['hash'] . '.' . $model['mimetype'];
+
+
+        $searchModel = new AssinaturaSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams, Yii::$app->user->id);
+
+
+
         return $this->render('index', [
             'model' => $model,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider
         ]);
     }
 

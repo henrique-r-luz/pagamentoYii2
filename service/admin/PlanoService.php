@@ -90,14 +90,4 @@ class PlanoService
         }
     }
 
-    private function controleErro()
-    {
-
-        //remove registro na api
-        $this->removePlanoApi();
-    }
-
-    private function removePlanoApi()
-    {
-    }
 }

@@ -16,7 +16,7 @@ use app\models\admin\permissao\AuthItem;
  */
 class PlanoTipo extends \yii\db\ActiveRecord
 {
-    const PLANO_PADRAO = "Plano Parão";
+    const PLANO_PADRAO = "Plano Padrão";
     /**
      * {@inheritdoc}
      */

@@ -2,6 +2,7 @@
 
 namespace app\controllers\admin;
 
+use Yii;
 use yii\web\Controller;
 use app\models\admin\User;
 use yii\filters\VerbFilter;
@@ -74,9 +75,16 @@ class UserController extends Controller
 
         if ($this->request->isPost && $model->load($this->request->post())) {
             try {
-                $model->plano_id = PlanoTipo::findOne(['nome' => PlanoTipo::PLANO_PADRAO])->id;
+                $plano = PlanoTipo::find()->where(['nome' => PlanoTipo::PLANO_PADRAO])->one();
+                if (empty($plano)) {
+                    Yii::$app->session->setFlash('danger', 'O plano Padrão não foi encontrato!');
+                    return $this->render('create', [
+                        'model' => $model,
+                    ]);
+                }
+                $model->plano_id = $plano->id;
                 $userService = new UserService();
-                $userService->criaUser($model);
+                $userService->criaUser($model, $plano);
                 return $this->redirect(['view', 'id' => $model->id]);
             } catch (PagamentoException $e) {
                 throw new NotFoundHttpException($e->getMessage());

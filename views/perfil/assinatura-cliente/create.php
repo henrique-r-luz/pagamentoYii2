@@ -92,24 +92,7 @@ $create =  '<a href="' . Url::to(['seleciona-plano']) . '" class="btn btn-second
                                 reject();
                             });
 
-                        /* .then(response).then(data => {
-                             console.log('initttt');
-                             console.log(resolve);
-                             if (response.resp === true) {
-                                 console.log('certo');
-                                 window.location.href = '<?= Yii::$app->homeUrl ?>';
-                             } else {
-                                 console.log('erro');
-                                  $.growl.error({
-                                      message: response.msg
-                                  });
-                             }
-                         })
-                         .catch((error) => {
-                             console.log('reject');
-                             // lidar com a resposta de erro ao tentar criar o pagamento
-                             reject();
-                         })*/
+
                     });
                 },
                 onError: (error) => {

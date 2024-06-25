@@ -62,7 +62,7 @@ class AssinaturaClienteController extends Controller
             $resp = $assinaturaServices->save();
             Yii::$app->session->setFlash('success', 'Assinatura criada com sucesso!!');
         } catch (PagamentoException $e) {
-            Yii::$app->session->setFlash('danger', 'Assinatura ao criar assinatura: ' . $e->getMessage() . '!!');
+            Yii::$app->session->setFlash('danger', 'Erro ao criar assinatura: ' . $e->getMessage() . '!!');
             $resp =  $e->getMessage();
         } finally {
             return $resp;

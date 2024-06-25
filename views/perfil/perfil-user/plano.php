@@ -1,14 +1,60 @@
-<div class="card border-left-primary shadow">
-    <div class="card-body">
-        <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                    Earnings (Monthly)</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-            </div>
-            <div class="col-auto">
-                <i class="fas fa-calendar fa-2x text-gray-300"></i>
-            </div>
-        </div>
-    </div>
-</div>
+<?php
+
+use yii\helpers\Url;
+use yii\helpers\Html;
+use app\lib\ActionColumnPadrao;
+use app\lib\GridViewPadrao as GridView;
+use app\lib\dicionario\StatusAssinatura;
+
+?>
+
+        <?= GridView::widget([
+            'titulo' => 'Históricos de Planos',
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'create' =>  '<a href="' . Url::to(['/perfil/assinatura-cliente/seleciona-plano']) . '" class="btn btn-primary btn-icon-split ml-auto">
+            <span class="icon text-white-50">
+                <i class="fas fa-plus"></i>
+            </span>
+            <span class="text">Assinar</span>
+        </a>',
+            'columns' => [
+                [
+                    'attribute' => 'id',
+                    'options' => ['style' => 'width:5%;'],
+                ],
+                'user_nome',
+                'plano_nome',
+                [
+                    'attribute' => 'data_inicio',
+                    'format' => ['date', 'd/MM/Y'],
+
+                ],
+                [
+                    'attribute' => 'data_fim',
+                    'format' => ['date', 'd/MM/Y'],
+
+                ],
+                [
+                    'header' => 'Ações',
+                    'class' => ActionColumnPadrao::class,
+                    'template' => '{cancelar}',
+                    'buttons' => [
+                        'cancelar' => function ($url, $model, $key) {
+                            return Html::a('<i class="fas fa-ban"  style="color: #c01c28;"></i>', $url, [
+                                'title' => 'Cancelar',
+                                'data-pjax' => '0',
+                            ]);
+                        },
+                    ],
+                    'visibleButtons' => [
+                        'cancelar' => function ($model, $key, $index) {
+
+                            return $model->status == StatusAssinatura::AUTHORIZED; // Show 'view' button only for active users
+                        },
+
+                    ],
+                    'options' => ['style' => 'width:6%;']
+                ],
+            ],
+        ]); ?>

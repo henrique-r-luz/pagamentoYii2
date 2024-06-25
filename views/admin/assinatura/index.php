@@ -17,30 +17,36 @@ $this->title = 'Assinaturas';
         <h1 class="h3 mb-0 text-gray-800"><?= Html::encode($this->title) ?></h1>
     </div>
 
-    
-            <?= GridView::widget([
-        'titulo'=>$this->title,
+
+    <?= GridView::widget([
+        'titulo' => $this->title,
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-        [
-                        'attribute' => 'id',
-                        'options' => ['style' => 'width:5%;'],
-                    ],
-            'user_id',
-            'plano_tipo_id',
-            'data_inicio',
+            [
+                'attribute' => 'id',
+                'options' => ['style' => 'width:5%;'],
+            ],
+            'user_nome',
+            'plano_nome',
+            [
+                'attribute' => 'data_inicio',
+                //'class' => DateColumn::class,
+                'format' => ['date', 'd/MM/Y'],
+
+            ],
             'data_fim',
-        [
-        'header' => 'Ações',
-        'class' => ActionColumn::className(),
-        'urlCreator' => function ($action, Assinatura $model, $key, $index, $column) {
-        return Url::toRoute([$action, 'id' => $model->id]);
-        },
-        'options' => ['style' => 'width:6%;']
+            'id_api_assinatura',
+            [
+                'header' => 'Ações',
+                'class' => ActionColumn::className(),
+                'urlCreator' => function ($action, Assinatura $model, $key, $index, $column) {
+                    return Url::toRoute([$action, 'id' => $model->id]);
+                },
+                'options' => ['style' => 'width:6%;']
+            ],
         ],
-        ],
-        ]); ?>
-    
-    
+    ]); ?>
+
+
 </div>
