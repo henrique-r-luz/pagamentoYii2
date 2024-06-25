@@ -74,20 +74,46 @@ $create =  '<a href="' . Url::to(['seleciona-plano']) . '" class="btn btn-second
                                 },
                                 body: JSON.stringify(cardFormData)
                             })
-                            .then((response) => {
+                            .then((response) => response.json())
+                            .then((data) => {
                                 // receber o resultado do pagamento
-                                window.location.href = '<?= Yii::$app->homeUrl ?>';
-                                console.log(response);
 
+                                if (data.resp === true) {
+                                    //  window.cardPaymentBrickController.unmount();
+                                    window.location.href = '<?= Yii::$app->homeUrl ?>';
+                                } else {
+                                    // window.cardPaymentBrickController.unmount();
+                                    location.reload();
+
+                                }
                             })
                             .catch((error) => {
                                 // lidar com a resposta de erro ao tentar criar o pagamento
                                 reject();
-                            })
+                            });
+
+                        /* .then(response).then(data => {
+                             console.log('initttt');
+                             console.log(resolve);
+                             if (response.resp === true) {
+                                 console.log('certo');
+                                 window.location.href = '<?= Yii::$app->homeUrl ?>';
+                             } else {
+                                 console.log('erro');
+                                  $.growl.error({
+                                      message: response.msg
+                                  });
+                             }
+                         })
+                         .catch((error) => {
+                             console.log('reject');
+                             // lidar com a resposta de erro ao tentar criar o pagamento
+                             reject();
+                         })*/
                     });
                 },
                 onError: (error) => {
-                    console.log('erroooo');
+
                     // callback chamado para todos os casos de erro do Brick
                 },
             },

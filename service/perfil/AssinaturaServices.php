@@ -27,8 +27,10 @@ class AssinaturaServices
 
     public function save()
     {
-        $apiAssinaturaId = $this->criaAssinaturaAPI();
-        $this->savaAssinaturaDB($apiAssinaturaId);
+        return ['resp' => true, 'msg' => 'criaod com sucesso'];
+        //throw new PagamentoException('dispara exce');
+        //$apiAssinaturaId = $this->criaAssinaturaAPI();
+        //$this->savaAssinaturaDB($apiAssinaturaId);
         //adiciona permições
     }
 

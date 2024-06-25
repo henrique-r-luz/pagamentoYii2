@@ -5,6 +5,7 @@ namespace app\controllers\perfil;
 
 use Yii;
 
+use yii\web\Response;
 use yii\web\Controller;
 use app\lib\PagamentoException;
 use app\models\admin\PlanoTipo;
@@ -51,16 +52,20 @@ class AssinaturaClienteController extends Controller
 
     public function actionPagamento()
     {
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+        $resp = null;
         try {
             $request = Yii::$app->request;
             $data = $request->getRawBody(); // Isso retorna um array com os dados JSON
             $resp = \json_decode($data, true);
-
             $assinaturaServices = new AssinaturaServices($resp['token'], $resp['plano_id']);
-            $assinaturaServices->save();
+            $resp = $assinaturaServices->save();
             Yii::$app->session->setFlash('success', 'Assinatura criada com sucesso!!');
         } catch (PagamentoException $e) {
             Yii::$app->session->setFlash('danger', 'Assinatura ao criar assinatura: ' . $e->getMessage() . '!!');
+            $resp =  $e->getMessage();
+        } finally {
+            return $resp;
         }
     }
 }
