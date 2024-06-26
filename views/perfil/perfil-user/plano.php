@@ -2,6 +2,7 @@
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+use app\lib\helper\StatusApi;
 use app\lib\ActionColumnPadrao;
 use app\lib\GridViewPadrao as GridView;
 use app\lib\dicionario\StatusAssinatura;
@@ -34,6 +35,13 @@ use app\lib\dicionario\StatusAssinatura;
                     'attribute' => 'data_fim',
                     'format' => ['date', 'php:d/m/Y H:i:s'],
 
+                ],
+                [
+                    'attribute' => 'status',
+                    'format' => 'raw',
+                    'value' => function ($model) {
+                        return StatusApi::all()[$model->status];
+                    }
                 ],
                 [
                     'header' => 'Ações',

@@ -8,4 +8,5 @@ class MercadoPago extends Component
 {
     public $url;
     public $token;
+    public $cliente;
 }

@@ -28,7 +28,7 @@ $create =  '<a href="' . Url::to(['seleciona-plano']) . '" class="btn btn-second
     </div>
 </div>
 <script>
-    const mp = new MercadoPago('APP_USR-45b1095b-131c-4eee-8daf-3fc00b0502b6');
+    const mp = new MercadoPago('<?= Yii::$app->mercado_pago->cliente ?>');
     const bricksBuilder = mp.bricks();
     const renderCardPaymentBrick = async (bricksBuilder) => {
         const settings = {
