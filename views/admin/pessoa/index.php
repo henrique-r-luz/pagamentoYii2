@@ -17,29 +17,29 @@ $this->title = 'Pessoas';
         <h1 class="h3 mb-0 text-gray-800"><?= Html::encode($this->title) ?></h1>
     </div>
 
-    
-            <?= GridView::widget([
-        'titulo'=>$this->title,
+
+    <?= GridView::widget([
+        'titulo' => $this->title,
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-        [
-                        'attribute' => 'id',
-                        'options' => ['style' => 'width:5%;'],
-                    ],
+            [
+                'attribute' => 'id',
+                'options' => ['style' => 'width:5%;'],
+            ],
             'nome:ntext',
             'cpf',
             'email:ntext',
-        [
-        'header' => 'Ações',
-        'class' => ActionColumn::className(),
-        'urlCreator' => function ($action, Pessoa $model, $key, $index, $column) {
-        return Url::toRoute([$action, 'id' => $model->id]);
-        },
-        'options' => ['style' => 'width:6%;']
+            [
+                'header' => 'Ações',
+                'class' => ActionColumn::class,
+                'urlCreator' => function ($action, Pessoa $model, $key, $index, $column) {
+                    return Url::toRoute([$action, 'id' => $model->id]);
+                },
+                'options' => ['style' => 'width:6%;']
+            ],
         ],
-        ],
-        ]); ?>
-    
-    
+    ]); ?>
+
+
 </div>

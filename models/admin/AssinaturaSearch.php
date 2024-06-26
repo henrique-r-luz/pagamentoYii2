@@ -52,7 +52,7 @@ class AssinaturaSearch extends Assinatura
      *
      * @return ActiveDataProvider
      */
-    public function search($params, $user_id = null)
+    public function search($params, $user_id = null, $order = false)
     {
         $query = self::find()
             ->select([
@@ -66,9 +66,10 @@ class AssinaturaSearch extends Assinatura
             ])
             ->joinWith(['planoTipo', 'user']);
 
-        $query->andFilterWhere(['user_id' => $user_id]);
-        $query->andFilterWhere(['ilike', 'plano_tipo.nome', $this->plano_nome])
-            ->andFilterWhere(['ilike', 'user.username', $this->user_nome]);
+        if ($order == true) {
+            $query->orderBy(['assinatura.created_at' => \SORT_DESC]);
+        }
+
 
         // add conditions that should always apply here
 
@@ -100,6 +101,12 @@ class AssinaturaSearch extends Assinatura
             'data_inicio' => $this->data_inicio,
             'data_fim' => $this->data_fim,
         ]);
+
+
+        $query->andFilterWhere(['user_id' => $user_id]);
+        $query->andFilterWhere(['ilike', 'plano_tipo.nome', $this->plano_nome])
+            ->andFilterWhere(['ilike', 'user.username', $this->user_nome]);
+
 
         return $dataProvider;
     }

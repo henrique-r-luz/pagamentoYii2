@@ -47,10 +47,13 @@ class UserService
 
     private function criaAssinatura($user, $plano)
     {
+        $objetoData = new \DateTime;
+        $data = (int) $objetoData->getTimestamp();
         $assinatura = new Assinatura();
         $assinatura->user_id = $user->id;
         $assinatura->plano_tipo_id = $plano->id;
-        $assinatura->data_inicio = date('Y-m-d');
+        $assinatura->data_inicio = date('Y-m-d H:i:s');
+        $assinatura->created_at  = $data;
         $assinatura->status = StatusAssinatura::AUTHORIZED;
         if (!$assinatura->save()) {
             throw new PagamentoException('Erro ao inserir Assinatura');

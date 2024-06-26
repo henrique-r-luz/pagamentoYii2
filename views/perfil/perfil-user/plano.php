@@ -27,12 +27,12 @@ use app\lib\dicionario\StatusAssinatura;
                 'plano_nome',
                 [
                     'attribute' => 'data_inicio',
-                    'format' => ['date', 'd/MM/Y'],
+                    'format' => ['date', 'php:d/m/Y H:i:s'],
 
                 ],
                 [
                     'attribute' => 'data_fim',
-                    'format' => ['date', 'd/MM/Y'],
+                    'format' => ['date', 'php:d/m/Y H:i:s'],
 
                 ],
                 [
@@ -43,7 +43,9 @@ use app\lib\dicionario\StatusAssinatura;
                         'cancelar' => function ($url, $model, $key) {
                             return Html::a('<i class="fas fa-ban"  style="color: #c01c28;"></i>', $url, [
                                 'title' => 'Cancelar',
-                                'data-pjax' => '0',
+                                //'data-pjax' => '0',
+                                'data-confirm' => 'Tem certeza que deseja cancelar a Assinatura?',
+                                'data-method' => 'post',
                             ]);
                         },
                     ],

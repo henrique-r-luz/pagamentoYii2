@@ -15,6 +15,7 @@ $this->registerCsrfMetaTags();
 
 ?>
 <?php $this->beginPage() ?>
+
 <?php foreach (Yii::$app->session->getAllFlashes() as $key => $message) :; ?>
 
     <?php

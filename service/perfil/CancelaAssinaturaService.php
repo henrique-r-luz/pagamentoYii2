@@ -51,7 +51,7 @@ class CancelaAssinaturaService
     {
 
         $this->assinatura->status = StatusAssinatura::CANCELLED;
-        $this->assinatura->data_fim = date('Y-m-d');
+        $this->assinatura->data_fim = date('Y-m-d H:i:s');
         if (!$this->assinatura->save()) {
             throw new PagamentoException("Erro ao salvar assinatura no BD !");
         }
@@ -60,10 +60,13 @@ class CancelaAssinaturaService
 
     public function criaAssinaturaPadrao($user_id, $plano_id)
     {
+        $objetoData = new \DateTime;
+        $data = (int) $objetoData->getTimestamp();
         $assinatura = new Assinatura();
         $assinatura->user_id = $user_id;
         $assinatura->plano_tipo_id = $plano_id;
-        $assinatura->data_inicio = date('Y-m-d');
+        $assinatura->data_inicio = date('Y-m-d H:i:s');
+        $assinatura->created_at = $data;
         $assinatura->status = StatusAssinatura::AUTHORIZED;
         if (!$assinatura->save()) {
             throw new PagamentoException("Erro ao salvar assinatura no BD !");

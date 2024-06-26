@@ -56,7 +56,7 @@ class AssinaturaServices
     private function atualizaAssinaturasAntigas()
     {
         $now = new DateTime();
-        $data = $now->format('Y-m-d');
+        $data = $now->format('Y-m-d H:i:s');
         $assinaturas = Assinatura::find()
             ->innerJoinWith(['planoTipo'])
             ->where(['user_id' => $this->user_id])
@@ -101,11 +101,14 @@ class AssinaturaServices
 
     private function savaAssinaturaDB($apiAssinaturaId)
     {
+        $objetoData = new \DateTime;
+        $data = (int) $objetoData->getTimestamp();
         $assinatura = new Assinatura();
         $assinatura->user_id = $this->user_id;
         $assinatura->plano_tipo_id = $this->plano->id;
-        $assinatura->data_inicio = date('Y-m-d');
+        $assinatura->data_inicio = date('Y-m-d H:i:s');
         $assinatura->id_api_assinatura = $apiAssinaturaId;
+        $assinatura->created_at = $data;
         $assinatura->status = StatusAssinatura::AUTHORIZED;
         if (!$assinatura->save()) {
             throw new PagamentoException("Erro ao salvar assinatura no BD !");

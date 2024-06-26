@@ -49,6 +49,10 @@ class m240620_131002_permissao_assinatura extends Migration
             ['parent' => 'ouro', 'child' => '/conteudo-ouro/*']
 
         ]);
+
+        $this->alterColumn('assinatura', 'data_inicio', 'TIMESTAMP NOT NULL');
+        $this->alterColumn('assinatura', 'data_fim', 'TIMESTAMP');
+        $this->addColumn('assinatura', 'created_at', 'INTEGER');
     }
 
     /**
@@ -56,6 +60,10 @@ class m240620_131002_permissao_assinatura extends Migration
      */
     public function safeDown()
     {
+        $this->alterColumn('assinatura', 'data_inicio', 'date NOT NULL');
+        $this->alterColumn('assinatura', 'data_fim', 'date');
+        $this->dropColumn('assinatura', 'created_at');
+
         $this->delete('auth_item_child', [
             'child' => '/perfil/assinatura-cliente/*',
         ]);

@@ -31,9 +31,9 @@ class Assinatura extends ActiveRecord
     public function rules()
     {
         return [
-            [['plano_tipo_id', 'data_inicio'], 'required'],
+            [['plano_tipo_id', 'data_inicio', 'created_at'], 'required'],
             [['plano_tipo_id'], 'default', 'value' => null],
-            [['plano_tipo_id', 'user_id'], 'integer'],
+            [['plano_tipo_id', 'user_id', 'created_at'], 'integer'],
             [['data_inicio', 'data_fim'], 'safe'],
             [['status', 'id_api_assinatura'], 'string'],
             [['plano_tipo_id'], 'exist', 'skipOnError' => true, 'targetClass' => PlanoTipo::class, 'targetAttribute' => ['plano_tipo_id' => 'id']],

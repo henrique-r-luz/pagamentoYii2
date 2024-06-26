@@ -33,7 +33,7 @@ class PerfilUserController extends Controller
 
 
         $searchModel = new AssinaturaSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams, Yii::$app->user->id);
+        $dataProvider = $searchModel->search($this->request->queryParams, Yii::$app->user->id, true);
 
 
 
