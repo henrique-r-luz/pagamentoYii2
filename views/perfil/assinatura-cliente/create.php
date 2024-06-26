@@ -77,7 +77,7 @@ $create =  '<a href="' . Url::to(['seleciona-plano']) . '" class="btn btn-second
                             .then((response) => response.json())
                             .then((data) => {
                                 // receber o resultado do pagamento
-
+                                console.log(data);
                                 if (data.resp === true) {
                                     //  window.cardPaymentBrickController.unmount();
                                     window.location.href = '<?= Yii::$app->homeUrl ?>';
@@ -88,15 +88,16 @@ $create =  '<a href="' . Url::to(['seleciona-plano']) . '" class="btn btn-second
                                 }
                             })
                             .catch((error) => {
+                                location.reload();
                                 // lidar com a resposta de erro ao tentar criar o pagamento
-                                reject();
+                                //reject();
                             });
 
 
                     });
                 },
                 onError: (error) => {
-
+                    location.reload();
                     // callback chamado para todos os casos de erro do Brick
                 },
             },
