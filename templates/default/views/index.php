@@ -15,7 +15,7 @@ use <?= $generator->modelClass ?>;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
-use app\lib\GridViewPadrao as GridView;
+use app\lib\widget\grid\GridViewPadrao as GridView;
 <?= $generator->enablePjax ? 'use yii\widgets\Pjax;' : '' ?>
 
 /** @var yii\web\View $this */

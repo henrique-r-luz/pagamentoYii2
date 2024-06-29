@@ -3,8 +3,8 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use app\lib\helper\StatusApi;
-use app\lib\ActionColumnPadrao;
-use app\lib\GridViewPadrao as GridView;
+use app\lib\widget\grid\ActionColumnPadrao;
+use app\lib\widget\grid\GridViewPadrao as GridView;
 use app\lib\dicionario\StatusAssinatura;
 
 ?>

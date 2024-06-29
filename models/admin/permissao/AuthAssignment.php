@@ -3,6 +3,7 @@
 namespace app\models\admin\permissao;
 
 use Yii;
+use app\models\admin\permissao\TipoPermissao;
 
 /**
  * This is the model class for table "auth_assignment".
@@ -58,5 +59,35 @@ class AuthAssignment extends \yii\db\ActiveRecord
     public function getItemName()
     {
         return $this->hasOne(AuthItem::class, ['name' => 'item_name']);
+    }
+
+
+    public static  function permissoesUser()
+    {
+        $query =  self::find()
+            ->select([
+                'auth_item_child.child as name'
+            ])
+            ->innerJoin('auth_item', 'auth_item.name = auth_assignment.item_name')
+            ->innerJoin('auth_item_child', '"auth_item_child"."parent" = auth_item.name')
+            ->innerJoin('auth_item as auth_item_filhos', 'auth_item_filhos.name = auth_item_child.child')
+            ->where(['user_id' => strval(Yii::$app->user->id)])
+            ->andWhere(['auth_item_filhos.type' => TipoPermissao::TYPE['rota']])->distinct();
+
+        if (Yii::$app->user->can('admin')) {
+            $query =  AuthItem::find()
+                ->select([
+                    'name'
+                ])
+                ->andWhere(['type' => TipoPermissao::TYPE['rota']])->distinct();
+        }
+
+        $listaRotas = array_keys($query->asArray()
+            ->indexBy(['name'])->all());
+        foreach ($listaRotas as $i => $rota) {
+            $listaRotas[$i] = str_replace('/*', "", $rota);
+        }
+
+        return $listaRotas;
     }
 }

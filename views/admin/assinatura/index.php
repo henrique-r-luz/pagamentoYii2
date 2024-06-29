@@ -4,7 +4,7 @@ use app\models\admin\Assinatura;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
-use app\lib\GridViewPadrao as GridView;
+use app\lib\widget\grid\GridViewPadrao as GridView;
 
 /** @var yii\web\View $this */
 /** @var app\models\admin\AssinaturaSearch $searchModel */

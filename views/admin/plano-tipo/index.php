@@ -3,11 +3,11 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use app\lib\ActionColumn;
-use app\lib\ActionColumnPadrao;
+use app\lib\widget\grid\ActionColumnPadrao;
 use app\models\admin\PlanoTipo;
 use app\models\admin\PlanoDescricao;
 use app\models\admin\PlanoTipoSearch;
-use app\lib\GridViewPadrao as GridView;
+use app\lib\widget\grid\GridViewPadrao as GridView;
 use app\models\admin\PlanoDescricaoSearch;
 
 /** @var yii\web\View $this */

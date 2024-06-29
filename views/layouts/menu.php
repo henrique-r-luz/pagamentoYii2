@@ -1,8 +1,12 @@
 <?php
 
+use yii\web\View;
 use yii\helpers\Url;
+use app\models\admin\permissao\AuthAssignment;
 
-//$this->registerJsFile(Url::to('@web/js/menu.js'), ['depends' => [\yii\web\JqueryAsset::className()]]);
+$listaPermissaoRota = AuthAssignment::permissoesUser();
+
+
 
 ?>
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -18,7 +22,7 @@ use yii\helpers\Url;
     <!-- Nav Item - Charts -->
     <li id="nav-gratuito" class="nav-item">
         <a class="nav-link" href="/gratuito">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class=" fas fa-fw fa-chart-area"></i>
             <span>Gratuíto</span></a>
     </li>
 

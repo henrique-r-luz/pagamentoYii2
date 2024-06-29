@@ -1,6 +1,6 @@
 <?php
 
-namespace app\lib;
+namespace app\lib\widget\grid;
 
 use yii\helpers\Url;
 use yii\helpers\Html;

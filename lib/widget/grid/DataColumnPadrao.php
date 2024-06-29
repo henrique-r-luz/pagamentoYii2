@@ -1,6 +1,6 @@
 <?php
 
-namespace app\lib;
+namespace app\lib\widget\grid;
 
 use yii\helpers\Html;
 use kartik\grid\DataColumn;
