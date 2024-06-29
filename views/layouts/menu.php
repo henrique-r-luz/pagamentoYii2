@@ -1,51 +1,21 @@
 <?php
 
-use yii\web\View;
-use yii\helpers\Url;
-use app\models\admin\permissao\AuthAssignment;
-
-$listaPermissaoRota = AuthAssignment::permissoesUser();
-
-
+use app\lib\widget\Menu;
 
 ?>
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<?= Menu::widget([
+    "arrayMenu" => [
+        ['tipo' => Menu::UNICO, 'id' => 'nav-gratuito', 'icon' => 'fas fa-fw fa-chart-area', 'url' => '/gratuito', 'texto' => 'Gratuíto'],
+        ['tipo' => Menu::UNICO, 'id' => 'nav-pago', 'icon' => 'fas fa-fw fa-table', 'url' => '/pago', 'texto' => 'Pago'],
+        ['tipo' => Menu::UNICO, 'id' => 'nav-conteudo-prata', 'icon' => 'fas fa-star', 'url' => '/conteudo-prata', 'texto' => 'Conteudo Prata'],
+        ['tipo' => Menu::UNICO, 'id' => 'nav-conteudo-ouro', 'icon' => 'fas fa-ring', 'url' => '/conteudo-ouro', 'texto' => 'Conteudo Ouro'],
 
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/index.php">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink fa-2x"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Pay Yii2</div>
-    </a>
-
-    <!-- Nav Item - Charts -->
-    <li id="nav-gratuito" class="nav-item">
-        <a class="nav-link" href="/gratuito">
-            <i class=" fas fa-fw fa-chart-area"></i>
-            <span>Gratuíto</span></a>
-    </li>
-
-    <!-- Nav Item - Tables -->
-    <li id="nav-pago" class="nav-item">
-        <a class="nav-link" href="/pago">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Pago</span></a>
-    </li>
-    <li id="nav-admin" class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#adm" aria-expanded="true" aria-controls="adm">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Admin</span>
-        </a>
-        <div id="adm" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a id="a-pessoa" class="collapse-item" href="/admin/pessoa">Pessoa</a>
-                <a id="a-user" class="collapse-item" href="/admin/user">User</a>
-                <a id="a-plano-tipo" class="collapse-item" href="/admin/plano-tipo">Planos</a>
-                <a id="a-forma-pagamento" class="collapse-item" href="/admin/forma-pagamento">Forma Pagamento</a>
-                <a id="a-assinatura" class="collapse-item" href="/admin/assinatura">Assinatura</a>
-            </div>
-        </div>
-    </li>
-
-</ul>
+        [
+            'tipo' => Menu::MULTIPLO, 'id' => 'nav-admin', 'icon' => 'fas fa-fw fa-cog', 'texto' => 'Admin', 'refAnimacao' => 'adm',
+            'filhos' => [
+                ['id' => 'a-pessoa', 'url' => '/admin/pessoa', 'texto' => 'Pessoa']
+            ]
+        ],
+    ]
+])
+?>

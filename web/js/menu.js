@@ -29,6 +29,16 @@ $(document).ready(function () {
             'null': 'null',
             'null': 'null'
         },
+        'conteudo-prata': {
+            'nav-conteudo-prata': 'nav-item active',
+            'null': 'null',
+            'null': 'null'
+        },
+        'conteudo-ouro': {
+            'nav-conteudo-ouro': 'nav-item active',
+            'null': 'null',
+            'null': 'null'
+        },
         '/admin/plano-tipo': {
             'nav-admin': 'nav-item active',
             'adm': 'collapse show',
