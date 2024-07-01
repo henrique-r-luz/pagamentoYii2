@@ -29,7 +29,7 @@ class AppAsset extends AssetBundle
         'vendor/bootstrap/js/bootstrap.bundle.min.js',
         'vendor/jquery-easing/jquery.easing.min.js',
         'js/sb-admin-2.min.js',
-        'js/menu.js',
+        // 'js/menu.js',
 
 
     ];

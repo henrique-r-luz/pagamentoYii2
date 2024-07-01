@@ -13,7 +13,8 @@ use app\lib\widget\Menu;
         [
             'tipo' => Menu::MULTIPLO, 'id' => 'nav-admin', 'icon' => 'fas fa-fw fa-cog', 'texto' => 'Admin', 'refAnimacao' => 'adm',
             'filhos' => [
-                ['id' => 'a-pessoa', 'url' => '/admin/pessoa', 'texto' => 'Pessoa']
+                ['id' => 'a-pessoa', 'url' => '/admin/pessoa', 'texto' => 'Pessoa'],
+                ['id' => 'a-user', 'url' => '/admin/user', 'texto' => 'User']
             ]
         ],
     ]
