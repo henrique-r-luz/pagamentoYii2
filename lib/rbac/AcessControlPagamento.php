@@ -10,8 +10,7 @@ class AcessControlPagamento extends AccessControl
     public $allowRotas = [];
     public function beforeAction($action)
     {
-        // echo Yii::$app->controller->route;
-        // exit();
+
         $user = $this->user;
         /**
          * páginas públicas
@@ -51,6 +50,21 @@ class AcessControlPagamento extends AccessControl
 
 
         $this->denyAccess($user);
+        return false;
+    }
+
+    public static function permissaoMenu($user_id, $pagina)
+    {
+        if (Yii::$app->user->can('admin')) {
+            return true;
+        }
+
+        if (Yii::$app->authManager->checkAccess($user_id, $pagina)) {
+            return true;
+        }
+        if (Yii::$app->authManager->checkAccess($user_id, $pagina . '/*')) {
+            return true;
+        }
         return false;
     }
 }

@@ -4,6 +4,7 @@ namespace app\lib\widget;
 
 use Yii;
 use yii\base\Widget;
+use app\lib\rbac\AcessControlPagamento;
 
 class Menu extends Widget
 {
@@ -48,6 +49,9 @@ class Menu extends Widget
 
     private function itensUnico($menu)
     {
+        if (AcessControlPagamento::permissaoMenu(Yii::$app->user->id, $menu['url']) == false) {
+            return '';
+        }
         $css = $this->verificaController($menu);
 
         return  '<li id="' . $menu['id'] . '" class="' . $css['css'] . '">
@@ -64,6 +68,9 @@ class Menu extends Widget
         $html = '';
         $filhos = '';
         foreach ($menu['filhos'] as $item) {
+            if (AcessControlPagamento::permissaoMenu(Yii::$app->user->id, $item['url']) == false) {
+                return '';
+            }
             $css = $this->verificaController($item, $menu['id']);
             $filhos .=  $this->filhos($item, $css);
 
