@@ -12,6 +12,7 @@ use app\models\admin\PessoaSearch;
 use yii\web\NotFoundHttpException;
 use app\models\admin\AssinaturaSearch;
 use app\models\admin\PlanoTipo;
+use app\models\Arquivo;
 use app\service\perfil\EditaPerfilService;
 use app\service\perfil\CancelaAssinaturaService;
 
@@ -28,14 +29,9 @@ class PerfilUserController extends Controller
         if (empty($model)) {
             throw new NotFoundHttpException('Dados do perfil não foram encontrados!!');
         }
-        $path  = ($model['path'] == '') ? '' : '/' . $model['path'];
-        $model['img'] = $path . '/' . $model['hash'] . '.' . $model['mimetype'];
-
 
         $searchModel = new AssinaturaSearch();
         $dataProvider = $searchModel->search($this->request->queryParams, Yii::$app->user->id, true);
-
-
 
         return $this->render('index', [
             'model' => $model,
@@ -54,6 +50,7 @@ class PerfilUserController extends Controller
         /** @var Pessoa */
         $pessoa = $user->pessoa;
         if (Yii::$app->request->isPost) {
+
             try {
                 $trataImg = new TrataImg();
                 $editaPerfilService = new EditaPerfilService($pessoa, $this->request->post(), $trataImg);
@@ -69,8 +66,16 @@ class PerfilUserController extends Controller
         ]);
     }
 
-    public function actionImagemPerfil($url)
+    public function actionImagemPerfil()
     {
+
+        $arquivo = Arquivo::getArquivo(TrataImg::IMG_WIDTH, TrataImg::IMG_HEIGHT);
+        if (empty($arquivo)) {
+            return $this->getImagem('');
+        }
+        $path  = ($arquivo['path'] == '') ? '' : '/' . $arquivo['path'];
+        $url = $path . '/' . $arquivo['hash'] . '.' . $arquivo['mimetype'];
+
         $imagePath = Yii::getAlias('@arquivos') . $url;
         return $this->getImagem($imagePath);
     }
@@ -78,10 +83,12 @@ class PerfilUserController extends Controller
 
     public function actionImagemPerfilMini()
     {
-        $pessoa = new PessoaSearch();
-        $model = $pessoa->perfilMini();
-        $path  = ($model['path'] == '') ? '' : '/' . $model['path'];
-        $url = $path . '/' . $model['hash'] . '.' . $model['mimetype'];
+        $arquivo = Arquivo::getArquivo(TrataImg::MINI_WIDTH, TrataImg::MINI_HEIGHT);
+        if (empty($arquivo)) {
+            return $this->getImagem('');
+        }
+        $path  = ($arquivo['path'] == '') ? '' : '/' . $arquivo['path'];
+        $url = $path . '/' . $arquivo['hash'] . '.' . $arquivo['mimetype'];
         $imagePath = Yii::getAlias('@arquivos') . $url;
         return $this->getImagem($imagePath);
     }

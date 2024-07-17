@@ -44,6 +44,7 @@ class EditaPerfilService
             $transaction->rollBack();
             throw new PagamentoException($e->getMessage());
         } catch (Throwable $e) {
+
             $transaction->rollBack();
             throw new PagamentoException("Ocorreu um erro inesperado!");
         }
@@ -113,7 +114,9 @@ class EditaPerfilService
         foreach ($arquivos as $arquivoRemover) {
             $path  = ($arquivoRemover->path == '') ? '' : '/' . $arquivoRemover->path;
             $foto =  Yii::getAlias('@arquivos') . '/' . $path  . $arquivoRemover->hash . '.' . $arquivoRemover->mimetype;
-            unlink($foto);
+            if (file_exists($foto)) {
+                unlink($foto);
+            }
             $arquivoRemover->delete();
         }
     }

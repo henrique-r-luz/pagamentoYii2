@@ -141,6 +141,6 @@ class AuthItem extends \yii\db\ActiveRecord
 
     public static function getPlanos()
     {
-        return ArrayHelper::map(self::find()->where(['type' => TipoPermissao::TYPE['plano']])->asArray()->all(), 'name', 'name');
+        return ArrayHelper::map(self::find()->where(['description' => TipoPermissao::PLANO])->asArray()->all(), 'name', 'name');
     }
 }

@@ -29,6 +29,7 @@ class UserService
             $transaction->rollBack();
             throw new PagamentoException($e->getMessage());
         } catch (Throwable $e) {
+
             $transaction->rollBack();
             throw new PagamentoException("Ocorreu um erro inesperado!");
         }

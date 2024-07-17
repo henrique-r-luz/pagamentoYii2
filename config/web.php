@@ -52,10 +52,6 @@ $config = [
             ],
         ],
         'db' => $db,
-        'authManager' => [
-            'class' => 'yii\rbac\DbManager',
-        ],
-
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -67,7 +63,7 @@ $config = [
 
 
     ],
-    'as beforeRequest' => [
+    'as access' => [
         'class' => AcessControlPagamento::class,
         'allowRotas' => [
             '/site/login',

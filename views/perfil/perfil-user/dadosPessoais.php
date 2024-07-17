@@ -8,7 +8,7 @@ use yii\helpers\Url;
     </div>
     <div class="card-body  text-center">
         <div class="text-center">
-            <img class="img-fluid rounded-circle border border-primary" src="/perfil/perfil-user/imagem-perfil?url=<?= $model['img'] ?>">
+            <img class="img-fluid rounded-circle border border-primary" src="/perfil/perfil-user/imagem-perfil">
         </div>
         <hr style="border-top: 2px solid #007bff;">
         <div class="mb-1 text-gray-800">

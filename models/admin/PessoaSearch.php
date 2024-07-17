@@ -74,27 +74,24 @@ class PessoaSearch extends Pessoa
     //->andWhere(['altura' => TrataImg::IMG_HEIGHT])
     public function perfil()
     {
-        return $this->queryBase(TrataImg::IMG_WIDTH, TrataImg::IMG_HEIGHT)
+        return $this->queryBase()
             ->select([
                 'pessoa.id as pessoa_id',
                 'pessoa.nome',
                 'pessoa.cpf',
                 'pessoa.email',
-                'arquivo.hash',
-                'arquivo.mimetype',
-                'arquivo.path'
+
             ])
             ->leftJoin('user', '"user".pessoa_id = pessoa.id')
             ->andWhere(['user.id' => Yii::$app->user->id])
-
-            ->orderBy(['created_at' => \SORT_DESC])
             ->asArray()->one();
     }
 
 
     public function perfilMini()
     {
-        return $this->queryBase(TrataImg::MINI_WIDTH, TrataImg::MINI_HEIGHT)
+        return null;
+        /* $this->queryBase(TrataImg::MINI_WIDTH, TrataImg::MINI_HEIGHT)
             ->select([
 
                 'arquivo.hash',
@@ -104,18 +101,15 @@ class PessoaSearch extends Pessoa
             ->leftJoin('user', '"user".pessoa_id = pessoa.id')
             ->andWhere(['user.id' => Yii::$app->user->id])
             ->orderBy(['created_at' => \SORT_DESC])
-            ->asArray()->one();
+            ->asArray()->one();*/
     }
 
 
 
-    private function queryBase($largura, $altura)
+    private function queryBase()
     {
-        return  Pessoa::find()
-            ->leftJoin('arquivo', "arquivo.model_id = pessoa.id 
-                                     and arquivo.model='" . Pessoa::class . "'
-                                     and altura=" . $altura .
-                " and largura=" . $largura);
+        return  Pessoa::find();
+
         //->andWhere(['arquivo.model' => Pessoa::class]);
     }
 }

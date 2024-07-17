@@ -47,7 +47,6 @@ class m240606_124216_add_user_admin extends Migration
         ]);
         // Inserir o usuário admin
         $this->insert('user', [
-            'id' => 1,
             'username' => 'admin',
             'password' => $passwordHash,
             'pessoa_id' => Pessoa::find()->where(['cpf' => '90042297010'])->one()->id

@@ -8,8 +8,15 @@ use yii\filters\AccessControl;
 class AcessControlPagamento extends AccessControl
 {
     public $allowRotas = [];
-    public function beforeAction($action)
+    public function beforeAction($action): bool
     {
+        $param = [
+            'post' => Yii::$app->request->post(),
+            'get' => Yii::$app->request->get()
+        ];
+        if (empty(Yii::$app->request->post()) && empty(Yii::$app->request->get())) {
+            $param = [];
+        }
 
         $user = $this->user;
         /**
@@ -31,12 +38,13 @@ class AcessControlPagamento extends AccessControl
          */
 
         $pagina = ('/' . Yii::$app->controller->id);
-        if (Yii::$app->authManager->checkAccess($user->id, $pagina)) {
+        if (Yii::$app->authManager->checkAccess($user->id, $pagina, $param)) {
+
             return true;
         }
 
         $pagina = ('/' . Yii::$app->controller->id . '/*');
-        if (Yii::$app->authManager->checkAccess($user->id, $pagina)) {
+        if (Yii::$app->authManager->checkAccess($user->id, $pagina, $param)) {
             return true;
         }
 
@@ -44,7 +52,7 @@ class AcessControlPagamento extends AccessControl
          * permissão action
          */
         $pagina = ('/' . Yii::$app->controller->id . '/' . Yii::$app->controller->action->id);
-        if (Yii::$app->authManager->checkAccess($user->id, $pagina)) {
+        if (Yii::$app->authManager->checkAccess($user->id, $pagina, $param)) {
             return true;
         }
 

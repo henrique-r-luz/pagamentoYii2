@@ -5,6 +5,10 @@ namespace app\models\admin\permissao;
 class TipoPermissao
 {
 
+    const ROTA = 'rota';
+    const PAPEIS = 'papeis';
+    const PLANO = 'plano';
+
     public const DESCRICAO = [
         1 => 'rota',
         2 => 'papeis',

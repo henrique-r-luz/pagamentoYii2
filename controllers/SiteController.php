@@ -3,10 +3,12 @@
 namespace app\controllers;
 
 use Yii;
-use yii\web\Controller;
 use yii\web\Response;
+use yii\web\Controller;
 
 use app\models\LoginForm;
+use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 
 class SiteController extends Controller
@@ -14,42 +16,19 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
-    /* public function behaviors()
+    public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::class,
-                'only' => ['logout'],
-                'rules' => [
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
+
             'verbs' => [
                 'class' => VerbFilter::class,
-                'actions' => [
-                    'logout' => ['post'],
-                ],
+
             ],
         ];
     }
 
-   
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
-        ];
-    }*/
+
+
 
     /**
      * Displays homepage.
@@ -70,10 +49,7 @@ class SiteController extends Controller
     {
         $this->layout = 'main-login';
 
-        /* if (Yii::$app->request->isPost) {
-            echo 'posssssss';
-            exit();
-        }*/
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }

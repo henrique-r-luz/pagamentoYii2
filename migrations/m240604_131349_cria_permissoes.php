@@ -1,6 +1,7 @@
 <?php
 
 use yii\db\Migration;
+use app\lib\dicionario\Papeis;
 use app\models\admin\permissao\TipoPermissao;
 
 /**
@@ -21,7 +22,7 @@ class m240604_131349_cria_permissoes extends Migration
 
         $this->insert('auth_item', [
             'name' => '/site/index',
-            'type' => TipoPermissao::TYPE['rota'],
+            'type' => 2,
             'description' => TipoPermissao::DESCRICAO[TipoPermissao::TYPE['rota']],
             'created_at' => $data,
             'updated_at' => $data,
@@ -29,7 +30,7 @@ class m240604_131349_cria_permissoes extends Migration
 
         $this->insert('auth_item', [
             'name' => '/gratuito',
-            'type' => TipoPermissao::TYPE['rota'],
+            'type' => 2,
             'description' => TipoPermissao::DESCRICAO[TipoPermissao::TYPE['rota']],
             'created_at' => $data,
             'updated_at' => $data,
@@ -37,7 +38,7 @@ class m240604_131349_cria_permissoes extends Migration
 
         $this->insert('auth_item', [
             'name' => '/pago',
-            'type' => TipoPermissao::TYPE['rota'],
+            'type' => 2,
             'description' => TipoPermissao::DESCRICAO[TipoPermissao::TYPE['rota']],
             'created_at' => $data,
             'updated_at' => $data,
@@ -45,7 +46,7 @@ class m240604_131349_cria_permissoes extends Migration
 
         $this->insert('auth_item', [
             'name' => '/prata',
-            'type' => TipoPermissao::TYPE['rota'],
+            'type' => 2,
             'description' => TipoPermissao::DESCRICAO[TipoPermissao::TYPE['rota']],
             'created_at' => $data,
             'updated_at' => $data,
@@ -54,7 +55,7 @@ class m240604_131349_cria_permissoes extends Migration
 
         $this->insert('auth_item', [
             'name' => '/ouro',
-            'type' => TipoPermissao::TYPE['rota'],
+            'type' => 2,
             'description' => TipoPermissao::DESCRICAO[TipoPermissao::TYPE['rota']],
             'created_at' => $data,
             'updated_at' => $data,
@@ -62,7 +63,7 @@ class m240604_131349_cria_permissoes extends Migration
 
         $this->insert('auth_item', [
             'name' => '/admin/pessoa/*',
-            'type' => TipoPermissao::TYPE['rota'],
+            'type' => 2,
             'description' => TipoPermissao::DESCRICAO[TipoPermissao::TYPE['rota']],
             'created_at' => $data,
             'updated_at' => $data,
@@ -70,7 +71,7 @@ class m240604_131349_cria_permissoes extends Migration
 
         $this->insert('auth_item', [
             'name' => '/admin/user/*',
-            'type' => TipoPermissao::TYPE['rota'],
+            'type' => 2,
             'description' => TipoPermissao::DESCRICAO[TipoPermissao::TYPE['rota']],
             'created_at' => $data,
             'updated_at' => $data,
@@ -78,7 +79,7 @@ class m240604_131349_cria_permissoes extends Migration
 
         $this->insert('auth_item', [
             'name' => '/admin/plano-tipo/*',
-            'type' => TipoPermissao::TYPE['rota'],
+            'type' => 2,
             'description' => TipoPermissao::DESCRICAO[TipoPermissao::TYPE['rota']],
             'created_at' => $data,
             'updated_at' => $data,
@@ -86,7 +87,7 @@ class m240604_131349_cria_permissoes extends Migration
 
         $this->insert('auth_item', [
             'name' => '/admin/plano-descricao/*',
-            'type' => TipoPermissao::TYPE['rota'],
+            'type' => 2,
             'description' => TipoPermissao::DESCRICAO[TipoPermissao::TYPE['rota']],
             'created_at' => $data,
             'updated_at' => $data,
@@ -94,7 +95,7 @@ class m240604_131349_cria_permissoes extends Migration
 
         $this->insert('auth_item', [
             'name' => '/admin/forma-pagamento/*',
-            'type' => TipoPermissao::TYPE['rota'],
+            'type' => 2,
             'description' => TipoPermissao::DESCRICAO[TipoPermissao::TYPE['rota']],
             'created_at' => $data,
             'updated_at' => $data,
@@ -102,7 +103,7 @@ class m240604_131349_cria_permissoes extends Migration
 
         $this->insert('auth_item', [
             'name' => '/admin/assinatura/*',
-            'type' => TipoPermissao::TYPE['rota'],
+            'type' => 2,
             'description' => TipoPermissao::DESCRICAO[TipoPermissao::TYPE['rota']],
             'created_at' => $data,
             'updated_at' => $data,
@@ -114,7 +115,7 @@ class m240604_131349_cria_permissoes extends Migration
 
         $this->insert('auth_item', [
             'name' => 'admin',
-            'type' => TipoPermissao::TYPE['papeis'],
+            'type' => 2,
             'description' => TipoPermissao::DESCRICAO[TipoPermissao::TYPE['papeis']],
             'created_at' => $data,
             'updated_at' => $data,
@@ -126,34 +127,26 @@ class m240604_131349_cria_permissoes extends Migration
          * planos
          */
         $this->insert('auth_item', [
-            'name' => 'padrao',
-            'type' => TipoPermissao::TYPE['plano'],
+            'name' => Papeis::PADRAO,
+            'type' => 2,
             'description' => TipoPermissao::DESCRICAO[TipoPermissao::TYPE['plano']],
             'created_at' => $data,
             'updated_at' => $data,
         ]);
 
-        $this->insert('auth_item_child', [
-            'parent' => 'padrao',
-            'child' => '/gratuito'
-        ]);
 
-        $this->insert('auth_item_child', [
-            'parent' => 'padrao',
-            'child' => '/site/index'
-        ]);
 
         $this->insert('auth_item', [
-            'name' => 'prata',
-            'type' => TipoPermissao::TYPE['plano'],
+            'name' => Papeis::PRATA,
+            'type' => 2,
             'description' => TipoPermissao::DESCRICAO[TipoPermissao::TYPE['plano']],
             'created_at' => $data,
             'updated_at' => $data,
         ]);
 
         $this->insert('auth_item', [
-            'name' => 'ouro',
-            'type' => TipoPermissao::TYPE['plano'],
+            'name' => Papeis::OURO,
+            'type' => 2,
             'description' => TipoPermissao::DESCRICAO[TipoPermissao::TYPE['plano']],
             'created_at' => $data,
             'updated_at' => $data,
@@ -161,16 +154,19 @@ class m240604_131349_cria_permissoes extends Migration
 
 
         $this->batchInsert('auth_item_child', ['parent', 'child'], [
-            ['parent' => 'prata', 'child' => '/gratuito'],
-            ['parent' => 'prata', 'child' => '/pago'],
-            ['parent' => 'prata', 'child' => '/prata'],
-            ['parent' => 'prata', 'child' => '/site/index'],
+            ['parent' => Papeis::PADRAO, 'child' => '/gratuito'],
+            ['parent' => Papeis::PADRAO, 'child' => '/site/index'],
 
-            ['parent' => 'ouro', 'child' => '/gratuito'],
-            ['parent' => 'ouro', 'child' => '/pago'],
-            ['parent' => 'ouro', 'child' => '/prata'],
-            ['parent' => 'ouro', 'child' => '/ouro'],
-            ['parent' => 'ouro', 'child' => '/site/index'],
+            ['parent' => Papeis::PRATA, 'child' => '/gratuito'],
+            ['parent' => Papeis::PRATA, 'child' => '/pago'],
+            ['parent' => Papeis::PRATA, 'child' => '/prata'],
+            ['parent' => Papeis::PRATA, 'child' => '/site/index'],
+
+            ['parent' => Papeis::OURO, 'child' => '/gratuito'],
+            ['parent' => Papeis::OURO, 'child' => '/pago'],
+            ['parent' => Papeis::OURO, 'child' => '/prata'],
+            ['parent' => Papeis::OURO, 'child' => '/ouro'],
+            ['parent' => Papeis::OURO, 'child' => '/site/index'],
 
         ]);
     }
@@ -183,29 +179,29 @@ class m240604_131349_cria_permissoes extends Migration
 
 
         $this->delete('auth_item_child', [
-            'parent' => 'prata',
+            'parent' => Papeis::PADRAO,
         ]);
 
         $this->delete('auth_item_child', [
-            'parent' => 'ouro',
+            'parent' => Papeis::OURO,
         ]);
 
         $this->delete('auth_item_child', [
-            'parent' => 'padrao',
+            'parent' => Papeis::PADRAO,
         ]);
 
 
         $this->delete('auth_item', [
-            'name' => 'padrao',
+            'name' => Papeis::PADRAO,
         ]);
 
 
         $this->delete('auth_item', [
-            'name' => 'prata',
+            'name' => Papeis::PADRAO,
         ]);
 
         $this->delete('auth_item', [
-            'name' => 'ouro',
+            'name' => Papeis::OURO,
         ]);
 
 

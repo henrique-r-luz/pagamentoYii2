@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use app\lib\helper\TrataImg;
+use app\models\admin\Pessoa;
 
 /**
  * This is the model class for table "arquivo".
@@ -56,5 +58,18 @@ class Arquivo extends \yii\db\ActiveRecord
             'largura' => 'Largura',
             'altura' => 'Altura',
         ];
+    }
+
+    public static function getArquivo($largura, $altura)
+    {
+        return self::find()
+            ->innerJoin('pessoa', 'pessoa.id = arquivo.model_id')
+            ->innerJoin('user', '"user".pessoa_id = pessoa.id')
+            ->where(['arquivo.model' => Pessoa::class])
+            ->andWhere(['user.id' => Yii::$app->user->id])
+            ->andWhere(['altura' => $altura])
+            ->andWhere(['largura' => $largura])
+            ->orderBy(['created_at' => \SORT_DESC])
+            ->one();
     }
 }

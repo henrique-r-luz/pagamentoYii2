@@ -72,14 +72,14 @@ class AuthAssignment extends \yii\db\ActiveRecord
             ->innerJoin('auth_item_child', '"auth_item_child"."parent" = auth_item.name')
             ->innerJoin('auth_item as auth_item_filhos', 'auth_item_filhos.name = auth_item_child.child')
             ->where(['user_id' => strval(Yii::$app->user->id)])
-            ->andWhere(['auth_item_filhos.type' => TipoPermissao::TYPE['rota']])->distinct();
+            ->andWhere(['auth_item_filhos.description' => TipoPermissao::ROTA])->distinct();
 
         if (Yii::$app->user->can('admin')) {
             $query =  AuthItem::find()
                 ->select([
                     'name'
                 ])
-                ->andWhere(['type' => TipoPermissao::TYPE['rota']])->distinct();
+                ->andWhere(['description' => TipoPermissao::ROTA])->distinct();
         }
 
         $listaRotas = array_keys($query->asArray()
