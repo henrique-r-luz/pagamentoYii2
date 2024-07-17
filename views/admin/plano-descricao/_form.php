@@ -42,7 +42,6 @@ use yii\widgets\ActiveForm;
                     <?= $form->field($model, 'dia_compra_proporcional')->dropDownList(
                         [
                             -1 => 'false',
-                            1 => 'true',
                         ],
                         ['prompt' => '']
                     ) ?>

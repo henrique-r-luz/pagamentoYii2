@@ -33,6 +33,11 @@ class AcessControlPagamento extends AccessControl
         if (Yii::$app->user->can('admin')) {
             return true;
         }
+
+
+        if (Yii::$app->controller->id == 'default') {
+            return true;
+        }
         /**
          * verifica permissões controller
          */
@@ -55,7 +60,6 @@ class AcessControlPagamento extends AccessControl
         if (Yii::$app->authManager->checkAccess($user->id, $pagina, $param)) {
             return true;
         }
-
 
         $this->denyAccess($user);
         return false;

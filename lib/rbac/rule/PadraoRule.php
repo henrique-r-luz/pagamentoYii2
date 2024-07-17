@@ -10,10 +10,12 @@ class PadraoRule extends Rule
 {
     public $name  =  "padraoRule";
     const PERFIL_USER = 'perfil/perfil-user';
+    const ASSINATURA_CLIENTE = 'perfil/assinatura-cliente';
     private int $user_id;
     private array $params;
     public function execute($user, $item, $params)
     {
+
         $this->params = $params;
         $this->user_id = $user;
         if (empty($params)) {
@@ -27,15 +29,27 @@ class PadraoRule extends Rule
         if (Yii::$app->controller->id == self::PERFIL_USER && Yii::$app->controller->action->id == 'cancelar') {
             return $this->perfilUserCancelar();
         }
+
+        if (Yii::$app->controller->id == self::ASSINATURA_CLIENTE && Yii::$app->controller->action->id == 'seleciona-plano') {
+            return $this->assinaturaClienteSelecionaPlano();
+        }
+
+        if (Yii::$app->controller->id == self::ASSINATURA_CLIENTE && Yii::$app->controller->action->id == 'create') {
+            return $this->assinaturaClienteCreate();
+        }
+
+        if (Yii::$app->controller->id == self::ASSINATURA_CLIENTE && Yii::$app->controller->action->id == 'pagamento') {
+            return $this->assinaturaClientePagamento();
+        }
         return false;
     }
 
-    public function perfilUserEditar()
+    private function perfilUserEditar()
     {
         return true;
     }
 
-    public function  perfilUserCancelar()
+    private function  perfilUserCancelar()
     {
         if (!isset($this->params['get']['id'])) {
             return false;
@@ -46,5 +60,20 @@ class PadraoRule extends Rule
             return true;
         }
         return false;
+    }
+
+    private function assinaturaClienteSelecionaPlano()
+    {
+        return true;
+    }
+
+    private function assinaturaClienteCreate()
+    {
+        return true;
+    }
+
+    private function assinaturaClientePagamento()
+    {
+        return true;
     }
 }

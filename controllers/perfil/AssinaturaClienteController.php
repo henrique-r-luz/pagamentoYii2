@@ -58,6 +58,16 @@ class AssinaturaClienteController extends Controller
             $request = Yii::$app->request;
             $data = $request->getRawBody(); // Isso retorna um array com os dados JSON
             $resp = \json_decode($data, true);
+            //valida dados
+            $user = Yii::$app->user->identity;
+            if ($user->pessoa->email != $resp['payer']['email']) {
+                Yii::$app->session->setFlash('danger', 'Erro ao criar assinatura: O email não é o mesmo que o cadastrado!');
+                return false;
+            }
+            if ($user->pessoa->cpf != $resp['payer']['identification']['number']) {
+                Yii::$app->session->setFlash('danger', 'Erro ao criar assinatura: O cpf não é o mesmo que o cadastrado!');
+                return false;
+            }
             $assinaturaServices = new AssinaturaServices($resp['token'], $resp['plano_id']);
             $resp = $assinaturaServices->save();
             Yii::$app->session->setFlash('success', 'Assinatura criada com sucesso!!');
@@ -68,7 +78,4 @@ class AssinaturaClienteController extends Controller
             return $resp;
         }
     }
-
-
-   
 }
