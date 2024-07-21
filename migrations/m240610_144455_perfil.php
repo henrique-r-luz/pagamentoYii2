@@ -19,7 +19,7 @@ class m240610_144455_perfil extends Migration
 
         $this->insert('auth_item', [
             'name' => '/perfil/perfil-user/*',
-            'type' => TipoPermissao::TYPE['rota'],
+            'type' => 2,
             'description' => TipoPermissao::DESCRICAO[TipoPermissao::TYPE['rota']],
             'created_at' => $data,
             'updated_at' => $data,

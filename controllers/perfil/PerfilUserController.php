@@ -71,8 +71,10 @@ class PerfilUserController extends Controller
 
         $arquivo = Arquivo::getArquivo(TrataImg::IMG_WIDTH, TrataImg::IMG_HEIGHT);
         if (empty($arquivo)) {
-            return $this->getImagem('');
+            header('Content-Type: png');
+            return  readfile(Yii::getAlias('img') . '/img.png');
         }
+
         $path  = ($arquivo['path'] == '') ? '' : '/' . $arquivo['path'];
         $url = $path . '/' . $arquivo['hash'] . '.' . $arquivo['mimetype'];
 
@@ -85,7 +87,8 @@ class PerfilUserController extends Controller
     {
         $arquivo = Arquivo::getArquivo(TrataImg::MINI_WIDTH, TrataImg::MINI_HEIGHT);
         if (empty($arquivo)) {
-            return $this->getImagem('');
+            header('Content-Type: png');
+            return  readfile(Yii::getAlias('img') . '/mini_img.png');
         }
         $path  = ($arquivo['path'] == '') ? '' : '/' . $arquivo['path'];
         $url = $path . '/' . $arquivo['hash'] . '.' . $arquivo['mimetype'];
@@ -96,7 +99,9 @@ class PerfilUserController extends Controller
 
     private function getImagem($imagePath)
     {
+
         if (file_exists($imagePath)) {
+
             // Obtém as informações sobre o arquivo
             $imageInfo = getimagesize($imagePath);
             $imageType = $imageInfo['mime'];

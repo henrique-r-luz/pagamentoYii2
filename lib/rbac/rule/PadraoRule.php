@@ -9,8 +9,6 @@ use yii\rbac\Rule;
 class PadraoRule extends Rule
 {
     public $name  =  "padraoRule";
-    const PERFIL_USER = 'perfil/perfil-user';
-    const ASSINATURA_CLIENTE = 'perfil/assinatura-cliente';
     private int $user_id;
     private array $params;
     public function execute($user, $item, $params)
@@ -22,23 +20,23 @@ class PadraoRule extends Rule
             return true;
         }
 
-        if (Yii::$app->controller->id == self::PERFIL_USER && Yii::$app->controller->action->id == 'editar') {
+        if (Yii::$app->controller->id == RulesDicionario::PERFIL_USER && Yii::$app->controller->action->id == 'editar') {
             return $this->perfilUserEditar();
         }
 
-        if (Yii::$app->controller->id == self::PERFIL_USER && Yii::$app->controller->action->id == 'cancelar') {
+        if (Yii::$app->controller->id == RulesDicionario::PERFIL_USER && Yii::$app->controller->action->id == 'cancelar') {
             return $this->perfilUserCancelar();
         }
 
-        if (Yii::$app->controller->id == self::ASSINATURA_CLIENTE && Yii::$app->controller->action->id == 'seleciona-plano') {
+        if (Yii::$app->controller->id == RulesDicionario::ASSINATURA_CLIENTE && Yii::$app->controller->action->id == 'seleciona-plano') {
             return $this->assinaturaClienteSelecionaPlano();
         }
 
-        if (Yii::$app->controller->id == self::ASSINATURA_CLIENTE && Yii::$app->controller->action->id == 'create') {
+        if (Yii::$app->controller->id == RulesDicionario::ASSINATURA_CLIENTE && Yii::$app->controller->action->id == 'create') {
             return $this->assinaturaClienteCreate();
         }
 
-        if (Yii::$app->controller->id == self::ASSINATURA_CLIENTE && Yii::$app->controller->action->id == 'pagamento') {
+        if (Yii::$app->controller->id == RulesDicionario::ASSINATURA_CLIENTE && Yii::$app->controller->action->id == 'pagamento') {
             return $this->assinaturaClientePagamento();
         }
         return false;
@@ -51,15 +49,7 @@ class PadraoRule extends Rule
 
     private function  perfilUserCancelar()
     {
-        if (!isset($this->params['get']['id'])) {
-            return false;
-        }
-        if (Assinatura::find()->where(['user_id' => $this->user_id])
-            ->andWhere(['id' => $this->params['get']['id']])->exists()
-        ) {
-            return true;
-        }
-        return false;
+        return  Ruleshelper::userCancelar($this->user_id, $this->params);
     }
 
     private function assinaturaClienteSelecionaPlano()

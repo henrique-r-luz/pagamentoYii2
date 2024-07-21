@@ -5,6 +5,7 @@ use app\lib\rbac\AcessControlPagamento;
 //diretório de arquivos
 
 Yii::setAlias('arquivos', dirname(__DIR__) . '/arquivos');
+Yii::setAlias('img', dirname(__DIR__) . '/web/img');
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
