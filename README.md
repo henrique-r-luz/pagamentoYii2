@@ -13,7 +13,6 @@ representa uma permissão de acesso a conteúdo deferente.
    - <b>apache</b>: Servidor web, utilizando o sistema apache.
    - <b>app</b>: PHP 8 com os códigos do sistema
    - <b>db_invest</b>: Banco de dados do sistema com o Postgresql instalado
-   - <b>db_teste</b>: Banco de dados para testes automatizados.
    
  ## Pré-requisito
    - Git
