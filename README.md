@@ -3,12 +3,9 @@
     <br>
 </p>
 
-Yii 2 Basic Project Template is a skeleton [Yii 2](https://www.yiiframework.com/) application best for
-rapidly creating small projects.
-
-The template contains the basic features including user login/logout and a contact page.
-It includes all commonly used configurations that would allow you to focus on adding new
-features to your application.
+O Pagamento yii2 é um exemplo de como integrar o framework yii2 com a API de mercado Pago.
+Nesse caso de usos mostra um sistema de controle de conteúdo , em que cada plano de assinatura 
+representa uma permissão de acesso a conteúdo deferente.
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
 [![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
