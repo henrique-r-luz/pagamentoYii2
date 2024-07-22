@@ -7,8 +7,6 @@ O Pagamento yii2 é um exemplo de como integrar o framework yii2 com a API de me
 Nesse caso de usos mostra um sistema de controle de conteúdo , em que cada plano de assinatura 
 representa uma permissão de acesso a conteúdo deferente.
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
 [![build](https://github.com/yiisoft/yii2-app-basic/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-app-basic/actions?query=workflow%3Abuild)
 
 DIRECTORY STRUCTURE
