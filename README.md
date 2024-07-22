@@ -60,7 +60,7 @@ php yii migrate
 return [
     'class' => MercadoPago::class,
     'url' => 'https://api.mercadopago.com/',
-    'token' => "",
-    'cliente' => ""
+    'token' => "key_servidor",
+    'cliente' => "Key_cliente"
 ];
  ~~~
