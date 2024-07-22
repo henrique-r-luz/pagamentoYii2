@@ -55,6 +55,8 @@ sudo docker exec -it pagamentoyii2_app_1  bash
  ~~~
 php yii migrate
  ~~~
+ Crie uma conta no mercado pago developer pelo site: https://www.mercadopago.com.br/developers/pt
+ 
  Crie o arquivo de configuração do mercado pago, config/mercado_pago.php
  ~~~
 return [
