@@ -72,3 +72,24 @@ return [
     'cliente' => "public_key"
 ];
  ~~~
+Com os migrates executados os sistema está pronto para uso, acesse:
+
+![login](https://github.com/user-attachments/assets/16ea8ac7-2040-465b-904d-f4024ba8b7fa)
+
+Aparecerá a tela de login
+
+~~~
+login:admin
+senha:admin
+~~~
+
+Realizando o login o sistema já pode ser utilizado, segui a tela inicial do pagamento Yii2
+
+![index](https://github.com/user-attachments/assets/8c592fd7-bdc6-407b-91c9-f5bb83210ce9)
+
+ ## Autor
+
+ [<img src="https://user-images.githubusercontent.com/12544898/174133076-fc3467c3-3908-436f-af3d-2635e4312180.png" width=115><br><sub>Henrique Rodrigues Luz</sub>](https://github.com/henrique-r-luz) 
+
+ 
+
