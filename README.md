@@ -12,7 +12,7 @@ representa uma permissão de acesso a conteúdos diferentes.
  Descrições dos containers:
    - <b>apache</b>: Servidor web, utilizando o sistema apache.
    - <b>app</b>: PHP 8 com os códigos do sistema
-   - <b>db_invest</b>: Banco de dados do sistema com o Postgresql instalado
+   - <b>db</b>: Banco de dados do sistema com o Postgresql instalado
    
  ## Pré-requisito
    - Git
