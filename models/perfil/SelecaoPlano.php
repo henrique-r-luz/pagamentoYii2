@@ -2,7 +2,9 @@
 
 namespace app\models\perfil;
 
+use Yii;
 use yii\base\Model;
+use app\validator\ValidaPlano;
 
 class SelecaoPlano extends Model
 {
@@ -13,6 +15,7 @@ class SelecaoPlano extends Model
         return [
             [['plano_id'], 'required'],
             [['plano_id'], 'integer'],
+            [['plano_id'], 'verificaPlanoAtivo']
         ];
     }
 
@@ -21,5 +24,13 @@ class SelecaoPlano extends Model
         return [
             'plano_id' => 'Slecione o Plano'
         ];
+    }
+
+    public function verificaPlanoAtivo()
+    {
+
+        if (!ValidaPlano::valida(Yii::$app->user->id)) {
+            $this->addError('plano_id', 'Você já possui um plano ativo! Calcele o atual para criar um novo');
+        }
     }
 }

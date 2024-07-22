@@ -30,7 +30,7 @@ class AssinaturaClienteController extends Controller
     public function actionSelecionaPlano()
     {
         $selecaoPlano = new SelecaoPlano();
-        if ($selecaoPlano->load($this->request->post())) {
+        if ($selecaoPlano->load($this->request->post()) && $selecaoPlano->validate()) {
             return $this->redirect(['create', 'plano_id' => $selecaoPlano->plano_id]);
         }
         return $this->render('seleciona-plano', [

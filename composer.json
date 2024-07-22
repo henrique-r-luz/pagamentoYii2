@@ -93,7 +93,8 @@
             "app\\controllers\\": "controllers/",
             "app\\commands\\": "commands/",
             "app\\tests\\": "tests",
-            "app\\lib\\": "lib"
+            "app\\lib\\": "lib",
+            "app\\validator\\": "validator"
         }
     }
 }

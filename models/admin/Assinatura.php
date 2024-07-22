@@ -4,6 +4,8 @@ namespace app\models\admin;
 
 use Yii;
 use yii\db\ActiveRecord;
+use app\validator\ValidaPlano;
+use app\models\admin\PlanoTipo;
 
 /**
  * This is the model class for table "assinatura".
@@ -37,6 +39,7 @@ class Assinatura extends ActiveRecord
             [['data_inicio', 'data_fim'], 'safe'],
             [['status', 'id_api_assinatura'], 'string'],
             [['plano_tipo_id'], 'exist', 'skipOnError' => true, 'targetClass' => PlanoTipo::class, 'targetAttribute' => ['plano_tipo_id' => 'id']],
+            [['user_id'], 'verificaPlanoAtivo']
         ];
     }
 
@@ -68,5 +71,13 @@ class Assinatura extends ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    public function verificaPlanoAtivo()
+    {
+        
+        if (!ValidaPlano::valida(Yii::$app->user->id)) {
+            $this->addError('plano_id', 'Você já possui um plano ativo! Calcele o atual para criar um novo');
+        }
     }
 }
