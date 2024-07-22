@@ -59,7 +59,7 @@ php yii migrate
  
  ![Screenshot 2024-07-22 at 14-24-02 Mercado Pago Developers](https://github.com/user-attachments/assets/761ee979-a4ac-4906-8678-7ae8de485b9e)
 
- Cria as contas de vendedor e comprador , na conta de vendedor você pode recuperar a acess_token e a public_key 
+ Cria as contas de vendedor e comprador , na conta de vendedor você pode recuperar o acess_token e o public_key 
  
 ![Captura de tela de 2024-07-22 14-35-25](https://github.com/user-attachments/assets/102195a5-3a56-4da8-beaf-188e108129de)
 
