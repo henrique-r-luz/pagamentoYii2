@@ -37,7 +37,7 @@ representa uma permissão de acesso a conteúdo deferente.
  ~~~
  https://github.com/henrique-r-luz/pagamentoYii2.git
  ~~~ 
- Após a conclusão do download entre na pasta invest e execute o comando abaixo.
+ Após a conclusão do download entre na pasta pagamentoYii2 e execute o comando abaixo.
  Esse processo pode levar alguns minutos porque o docker irá criar e configurar
  cada container. 
  ~~~
@@ -45,11 +45,13 @@ representa uma permissão de acesso a conteúdo deferente.
  ~~~ 
  Com os contêineres ligados, acesse o app com o seguinte comando:
  ~~~
- docker exec -it invest_app_1 bash
+ docker exec -it pagamentoYii2_app_1 bash
  ~~~
  Execute o compose para instalar as dependências
  ~~~
  composer install
  ~~~
  Depois execute os migrates 
+ ~~~
+php yii migrate
  ~~~
