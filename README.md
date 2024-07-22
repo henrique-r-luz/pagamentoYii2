@@ -4,8 +4,8 @@
 </p>
 
 O Pagamento yii2 é um exemplo de como integrar o framework yii2 com a API de mercado Pago.
-Nesse caso de usos mostra um sistema de controle de conteúdo , em que cada plano de assinatura 
-representa uma permissão de acesso a conteúdo deferente.
+Nesse caso de uso mostra um sistema de controle de conteúdo , em que cada plano de assinatura 
+representa uma permissão de acesso a conteúdos diferentes.
 
  ## Arquitetura de Containers 
  
