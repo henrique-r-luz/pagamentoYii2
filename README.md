@@ -28,6 +28,7 @@ representa uma permissão de acesso a conteúdo deferente.
 - ``Extensão gd para redimencionar foto``
 - ``API mercado pago``
 - ``RBAC Yii2``
+- ``Template SB Admin 2``
   
 
     
