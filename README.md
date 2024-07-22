@@ -27,6 +27,7 @@ representa uma permissão de acesso a conteúdo deferente.
 - ``JavaScript``
 - ``Extensão gd para redimencionar foto``
 - ``API mercado pago``
+- ``RBAC Yii2``
   
 
     
