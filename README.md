@@ -25,6 +25,9 @@ representa uma permissão de acesso a conteúdo deferente.
 - ``Yii2``
 - ``PostgresSql``
 - ``JavaScript``
+- ``Extensão gd para redimencionar foto``
+- ``API mercado pago``
+  
 
     
  ## Instalação
