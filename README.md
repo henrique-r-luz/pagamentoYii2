@@ -45,7 +45,7 @@ representa uma permissão de acesso a conteúdo deferente.
  ~~~ 
  Com os contêineres ligados, acesse o app com o seguinte comando:
  ~~~
- docker exec -it pagamentoYii2_app_1 bash
+sudo docker exec -it pagamentoyii2_app_1  bash
  ~~~
  Execute o compose para instalar as dependências
  ~~~
