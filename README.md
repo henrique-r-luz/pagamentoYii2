@@ -21,7 +21,7 @@ representa uma permissão de acesso a conteúdo deferente.
 
 ## Tecnologias utilizadas
 
-- ``PHP 8``
+- ``PHP 8.2``
 - ``Yii2``
 - ``PostgresSql``
 - ``JavaScript``
