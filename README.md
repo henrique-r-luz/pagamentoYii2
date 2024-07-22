@@ -35,7 +35,7 @@ representa uma permissão de acesso a conteúdo deferente.
 
   Baixar o projeto no github.
  ~~~
- git clone https://github.com/henrique-r-luz/invest.git
+ https://github.com/henrique-r-luz/pagamentoYii2.git
  ~~~ 
  Após a conclusão do download entre na pasta invest e execute o comando abaixo.
  Esse processo pode levar alguns minutos porque o docker irá criar e configurar
