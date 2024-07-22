@@ -32,3 +32,24 @@ representa uma permissão de acesso a conteúdo deferente.
 
     
  ## Instalação
+
+  Baixar o projeto no github.
+ ~~~
+ git clone https://github.com/henrique-r-luz/invest.git
+ ~~~ 
+ Após a conclusão do download entre na pasta invest e execute o comando abaixo.
+ Esse processo pode levar alguns minutos porque o docker irá criar e configurar
+ cada container. 
+ ~~~
+ sudo docker-compose up
+ ~~~ 
+ Com os contêineres ligados, acesse o app com o seguinte comando:
+ ~~~
+ docker exec -it invest_app_1 bash
+ ~~~
+ Execute o compose para instalar as dependências
+ ~~~
+ composer install
+ ~~~
+ Depois execute os migrates 
+ ~~~
