@@ -55,3 +55,12 @@ sudo docker exec -it pagamentoyii2_app_1  bash
  ~~~
 php yii migrate
  ~~~
+ Crie o arquivo de configuração do mercado pago 
+ ~~~
+return [
+    'class' => MercadoPago::class,
+    'url' => 'https://api.mercadopago.com/',
+    'token' => "",
+    'cliente' => ""
+];
+ ~~~
