@@ -12615,3 +12615,16 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+
+has-error .help-block,
+.has-error .help-inline {
+  color: red;
+}
+
+
+.help-block {
+  color: #c30909;
+  margin-left: 10px;
+  margin-top: 3px;
+}
